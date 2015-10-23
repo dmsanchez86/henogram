@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  
+    <title>Genograma</title>
+    
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/herman.css" id="theme_config">
+            
+  </head>
+  <body>
+  
+    <div class="app">
+      
+      <div class="all">
+        
+        <div class="material-menu-panel">
+          <div class="loader_" style="display:none">
+             <div class="spin_l preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="map">
+            <div class="toolbar">
+              <p class="sub">GENOGRAMA</p>
+            </div>
+              
+            <div class="jtk-demo-main">
+              <div class="" id="canvas"></div>
+    			      <div class="type_connector">
+    			        <div class="typett">SELECCION:</div>
+    			        <div class="typeimg">
+    			          <img id="image_type" src=""></img>
+    			        </div>
+    			      </div>
+    			   </div>
+      			   
+          </div>
+        </div>
+  
+        <main>
+  
+          <div class="toolbar">
+            <p class="sub"> COMPONENTES </p>
+          </div>
+          <div class="content toolbox row">
+            <div class="conectors col s12">
+              <h3>Items</h3>
+              <div style="padding: .5rem; overflow:auto">
+                  <div class="item-drag col s6">
+                    <div class="icon-drag man" data-target="man"></div>
+                    <p class="title">Hombre</p>
+                  </div>
+                  <div class="item-drag col s6">
+                    <div class="icon-drag woman" data-target="woman"></div>
+                    <p class="title">Mujer</p>
+                  </div>  
+                  <div class="item-drag col s6">
+                    <div class="icon-drag lesbian" data-target="lesbian"></div>
+                    <p class="title">Lesbiana</p>
+                  </div>  
+                  <div class="item-drag col s6">
+                    <div class="icon-drag homosex" data-target="homosex"></div>
+                    <p class="title">Homosexual</p>
+                  </div>
+                  <div class="item-drag col s6">
+                    <div class="icon-drag pregnancy" data-target="pregnancy"></div>
+                    <p class="title">Embarazo</p>
+                  </div>
+              </div>
+              <h3>Conectores</h3>
+              <div class="conectors_content">
+                <h5>Abuso Sexual</h5>
+                <img class="icon-selector" type="Abuso_Sexual" src="resources/shapes/abuso_sexual.png">
+                <h5>Cercano</h5>
+                <img class="icon-selector" type="Cercano" src="resources/shapes/cercano.png">
+                <h5>Cercano - Hostil</h5>
+                <img class="icon-selector" type="Cercano_Hostil" src="resources/shapes/cercano_hostil.png">
+                <!--<h5>Cortado</h5>
+                <img class="icon-selector" type="Cortado" src="resources/shapes/cortado.png">-->
+                <h5>Distante</h5>
+                <img class="icon-selector" type="Distante" src="resources/shapes/distante.png">
+                <h5>Enfocado en</h5>
+                <img class="icon-selector" type="Enfocado_En" src="resources/shapes/enfocado.png">
+                <h5>Fusionado</h5>
+                <img class="icon-selector" type="Fusionado" src="resources/shapes/fusionado.png">
+                <h5>Fusionado - Hostil</h5>
+                <img class="icon-selector" type="Fusionado_Hostil" src="resources/shapes/fusionado_hostil.png">
+                <h5>Hostil</h5>
+                <img class="icon-selector" type="Hostil" src="resources/shapes/hostil.png">
+                <h5>Union</h5>
+                <img class="icon-selector" type="Flowchart" src="resources/shapes/union.png">
+              </div>
+              <h3>Opciones</h3>
+              <div>
+                <img src="resources/save.png" style="max-width: 25px; vertical-align: middle; margin-right: 1rem"></img>
+                  <a href="" class="down_ico" download="diagram.html">Guardar</a>
+                  
+                 <p class="alert_i" style="display:none">Debe instalar un plugin para realizar <a href="javascript:FireShotAPI.installPlugin()">INSTALAR</a></p>   
+                 
+                 <p class="alert_ok" style="display:none">
+                   El plugin esta Activo <a href="javascript:FireShotAPI.savePage(false)">GUARDAR</a></p> 
+                 </p>
+              </div>
+            </div>
+          </div>
+  
+        </main>
+  
+      </div>
+      
+    </div>
+    
+    <div class="settings">
+      <img src="resources/settings.png"></img>
+      <ul>
+        <li theme="">Tema 1</li>
+        <li theme="theme_2">Tema 2</li>
+        <li theme="theme_3">Tema 3</li>
+        <li theme="theme_4">Tema 4</li>
+      </ul>
+    </div>
+    
+    <div id="settings_path" title="Path Settings">
+      <div class="size_content">
+        <label for="txt_size_path">Tamaño</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="number" max="4" min="1" value="1" id="txt_size_path" size="4">
+      </div>
+      <div class="size_content">
+        <label for="txt_color_path">Color</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="color" id="txt_color_path" >
+      </div>
+      <div class="container_btn">
+        <button type="button" id="btn_delete_path">Borrar</button>
+      </div>
+    </div>
+    
+    <div id="settings_item" title="Item Settings">
+      <div class="content_age">
+        <label for="txt_age">Edad Item</label>
+        <input type="text" name="txt_age" id="txt_age" />
+      </div>
+      
+      <div class="content_birth">
+        <label for="txt_date">Fecha de Nacimiento</label>
+        <input type="date" name="txt_date" id="txt_date" />
+      </div>
+
+      
+      <div class="design_content">
+        <label for="txt_color_text">Diseño</label>
+        <span>Background</span><input type="color" name="txt_color" id="txt_color_text" />
+      </div>
+      
+      <div class="die_content">
+        <label for="chb_die">Estado</label>
+        <span>Muerte</span><input type="checkbox" name="chb_die" id="chb_die" />
+      </div>
+      
+      <div class="container_btn">
+        <button type="button" id="btn_delete">Borrar</button>
+      </div>
+    </div>
+    
+    <!--Scripts and Libraries-->
+    <script src="js/prefixfree.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+   
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jsPlumb-2.0.2-min.js"></script>
+    
+    <script src="js/Conectores/Fusionado.js"></script>
+    <script src="js/Conectores/Enfocado_En.js"></script>
+    <script src="js/Conectores/Hostil.js"></script>
+    <script src="js/Conectores/Fusionado_Hostil.js"></script>
+    <script src="js/Conectores/Cercano_Hostil.js"></script>
+    <script src="js/Conectores/Cercano.js"></script>
+    <script src="js/Conectores/Abuso_Sexual.js"></script>
+    <script src="js/Conectores/Cortado.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <script src="js/actions.js"></script>
+    <script src="js/fsapi.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<script type="text/javascript" src="fsapi.js" onerror="alert('Error: failed to load ' + this.src)">
+</script>
+<script>
+	// Set this to *false* to avoid addon auto-installation if missed.
+	FireShotAPI.AutoInstall = true;
+
+   	function openScreenshot(mode)
+	{
+		var w = window.open('','View captured image','width=800,height=600,toolbar=1,scrollbars=1');
+		w.document.write('<p><b>This is a captured image embedded into HTML by JavaScript.</b></p>');
+		var img = w.document.createElement("IMG");
+		img.src = "data:image/png;base64," +  FireShotAPI.base64EncodePage(mode);
+		w.document.body.appendChild(img);
+	}
+
+</script>
+</head>
+
+<body onLoad="FireShotAPI.checkAvailability()">
+<div align="center">
+<form>
+<p>Capture entire webpage and:</p>
+<input type="button" onClick="FireShotAPI.editPage(true)" value="Edit">
+<input type="button" onClick="FireShotAPI.savePage(true)" value="Save">
+<input type="button" onClick="FireShotAPI.copyPage(true)" value="Copy">
+<input type="button" onClick="FireShotAPI.emailPage(true)" value="E-Mail">
+<input type="button" onClick="FireShotAPI.exportPage(true)" value="Export">
+<input type="button" onClick="FireShotAPI.uploadPage(true)" value="Upload">
+<input type="button" onClick="FireShotAPI.printPage(true)" value="Print">
+<input type="button" onClick="openScreenshot(true)" value="Embed screenshot into webpage">
+<br><br>
+
+<p>Capture visible part and:</p>
+<br>
+<input type="button" onClick="FireShotAPI.editPage(false)" value="Edit">
+<input type="button" onClick="FireShotAPI.savePage(false)" value="Save">
+<input type="button" onClick="FireShotAPI.copyPage(false)" value="Copy">
+<input type="button" onClick="FireShotAPI.emailPage(false)" value="E-Mail">
+<input type="button" onClick="FireShotAPI.exportPage(false)" value="Export">
+<input type="button" onClick="FireShotAPI.uploadPage(false)" value="Upload">
+<input type="button" onClick="FireShotAPI.printPage(false)" value="Print">
+<input type="button" onClick="openScreenshot(false)" value="Embed screenshot into webpage">
+</form>
+</div>
+</body>
+</html>

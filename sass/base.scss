@@ -1,0 +1,420 @@
+@import 'variables';
+@import 'functions';
+
+.panel_options{
+    position: absolute;
+    box-sizing: border-box;
+    padding: 4rem .7rem;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    max-width: 200px;
+    background: rgba(3, 169, 244, 0.6);
+    z-index: 999999;
+    @include transition( transform .15s ease-in );
+    @include transform( translatex(100%) );
+    
+    label{
+        cursor: pointer;
+        margin-top: 1rem;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        display: block;
+        text-align: center;
+    }
+    
+    input[type=text],input[type=date]{
+        border-color: white;
+        color: white;
+        text-align: center;
+        
+        &:focus{
+            box-shadow: none;
+            border-color: white;
+        }
+    }
+    
+    &.open{
+        @include transform( translatex(0%) );
+    }
+}
+
+.icon-drag, .shape{
+    position: relative;
+    color: white;
+    text-align: center;
+    word-wrap: break-word;
+    line-height: 1;
+    text-shadow: 0 0 1px #323232;
+    line-height: 50px;
+    font-size: 1.5rem;
+    
+    &.man{
+        content: attr(text);
+        display: block;
+        background: $man;
+        padding: .5rem;
+        @include border-radius(50%);
+    }
+    
+    &.woman{
+        display: block;
+        background: $woman;
+        padding: .5rem;
+    }
+    
+    &.lesbian{
+        display: block;
+        background: $woman;
+        padding: .5rem;
+        @include border-radius(50%);
+        
+        &:after{
+            content: '';
+            border: 32px solid #fff;
+            border-color: #fff rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 26px;
+            left: 0px;
+        }    
+        
+    }
+    
+    &.homosex{
+        display: block;
+        background: $man;
+        padding: .5rem;
+        
+        &:after{
+            content: '';
+            border: 32px solid #fff;
+            border-color: #fff rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 26px;
+            left: 0px;
+        }    
+        
+    }
+
+    &.pregnancy{
+        &:after{
+            box-sizing: border-box;
+            content: '';
+            border: 32px solid #323232;
+            display: block;
+            height: 100%;
+            border-color: transparent transparent $woman transparent;
+            position: relative;
+            top: -10px;
+        }
+        
+        &:before{
+            content: attr(text);
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            padding: .5rem;
+            z-index: 3;
+        }
+    }
+    
+}
+
+.shape{
+    .date{
+        position: absolute;
+        top: -45px;
+        left: -20px;
+        width: 150%;
+        font-size: 1rem;
+        color: rgb(3, 169, 244);
+    }
+    
+    &.die{
+        position: relative;
+        &:before{
+            background-image: url(../resources/shapes/die.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 9;
+            position: absolute;
+            width: 76%;
+            height: 76%;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+        }
+    }
+}
+
+.size_content{
+    span{
+        margin-right: 1rem;
+    }
+    
+    input{
+        display: inline;
+        margin: 0;
+        height: 1.5rem;
+        max-width: 90px;
+    }
+}
+
+.container_btn{
+    margin: 1rem 0 0;
+    
+    button{
+        background: transparent;
+        border: solid thin #e53935;
+        color: #e53935;
+        text-align: center;
+        width: 100%;
+        text-transform: uppercase;
+        font-size: .85rem;
+        padding: .25rem 0;
+        @include transition(all .35s ease);
+        
+        &:hover{
+            background: #e53935;
+            color: white;
+        }
+        
+    }
+}
+
+.content_age{
+    input{
+        margin: 0;
+        height: 1.5rem;
+    }
+}
+
+.design_content, .die_content{
+    span{
+        margin-right: 1rem;
+    }
+    
+    input[type=checkbox]{
+        position: static;
+    }
+}
+
+
+.type_connector {
+    background: rgba(150, 135, 135, 0.32);
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+    right: 0;
+    height: 60px;
+    width: 151px;
+    padding: 3px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.2s;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.26);
+    transform: translate3d(100%,100%,0);
+    
+    &.move{
+        transform: translate3d(0,0,0);
+    }
+}
+
+.typett {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  color: #3E3131;
+  font-size: 10px;
+  padding-top: 4px;
+}
+
+#image_type {
+    width: 100%;
+}
+
+.size_content,.design_content,.die_content {
+    text-align: center;
+}
+
+.down_ico{
+    @include transition(all .5s ease);
+    
+    &:hover{
+        color: #2969B0;
+        text-decoration: underline;
+    }
+}
+
+.content.toolbox{
+    h3{
+        height: auto;
+        line-height: 1;
+        text-decoration: none;
+    }
+}
+
+.settings{
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    z-index: 10;
+    
+    img{
+        max-width: 30px;
+        cursor: pointer;
+        @include transition(transform 3s linear);
+        
+        &:hover{
+            @include transform(rotate(360deg));
+            
+            + ul{
+                height: 108px;
+                border: #323232 dotted thin;
+            }
+        }
+    }
+    
+    ul{
+        @include transition( height .5s ease );
+        position: absolute;
+        height: 0;
+        background: white;
+        overflow: hidden;
+        width: 65px;
+        left: -25px;
+        top: 17px;
+        
+        &:hover{
+            height: 108px;
+            border: #323232 dotted thin;
+        }
+        
+        li{
+            padding: .15rem;
+            @include transition( height .5s ease );
+            cursor: pointer;
+            
+            &:hover{
+                background: #03A9F4;
+                color: white;
+            }
+        }
+    }
+}
+
+circle{
+    fill: rgba(110,110,110,.2);
+    @include transition(all .2s ease);
+    
+    &:hover{
+        fill: rgba(110,110,110,1);
+    }
+}
+
+path{
+    stroke: #323232;
+    stroke-width: 2.5px;
+    cursor: pointer;
+    
+    &:hover{
+        stroke: #000;
+    }
+}
+
+body{
+    @include transition(all .2s ease);
+    
+    &.theme_2{
+        .app:before{
+            background-color: $brown_primary;
+        }
+        
+        .toolbar{
+            background: $brown_secondary;
+        }
+        
+        .settings{
+            ul{
+                li{
+                    &:hover{
+                        background: $brown_secondary;
+                    }
+                }
+            }
+        }
+        
+        .panel_options{
+            background: rgba(152, 106, 0, 0.61);
+        }
+        
+        .shape .date{
+            color: $brown_secondary;
+        }
+    }
+    
+    &.theme_3{
+        .app:before{
+            background-color: $red_primary;
+        }
+        
+        .toolbar{
+            background: $red_secondary;
+        }
+        
+        .settings{
+            ul{
+                li{
+                    &:hover{
+                        background: $red_secondary;
+                    }
+                }
+            }
+        }
+        
+        .panel_options{
+            background: rgba(255, 51, 51, 0.6);
+        }
+        
+        .shape .date{
+            color: $red_secondary;
+        }
+    }
+    
+    &.theme_4{
+        .app:before{
+            background-color: $purple_primary;
+        }
+        
+        .toolbar{
+            background: $purple_secondary;
+        }
+        
+        .settings{
+            ul{
+                li{
+                    &:hover{
+                        background: $purple_secondary;
+                    }
+                }
+            }
+        }
+        
+        .panel_options{
+            background: rgba(150, 51, 255, 0.6);
+        }
+        
+        .shape .date{
+            color: $purple_secondary;
+        }
+    }
+}

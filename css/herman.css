@@ -1,0 +1,21 @@
+#canvas_full {
+    background: transparent;
+    height: 100%;
+    width: 100%;
+}
+
+.alert_i {
+    color: red;
+    font-size: 13px;
+    line-height: 1.4 !important;
+}
+
+.alert_i a {
+    background: red;
+    padding: 1px;
+}
+
+.alert_ok {
+    color: green;
+    line-height: 1;
+}
