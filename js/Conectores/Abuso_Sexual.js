@@ -50,6 +50,8 @@
                 x2:paintInfo.startStubX,
                 y2:paintInfo.startStubY
              });
+             
+             console.log(_super);
 
             for (var i = 0; i < peaks - 1; i++) {
                 // debugger;

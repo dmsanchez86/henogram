@@ -73,11 +73,11 @@
         &:after{
             content: '';
             border: 32px solid #fff;
-            border-color: #fff rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
+            border-color: #000 rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
             height: 100%;
             display: block;
             position: absolute;
-            top: 26px;
+            top: 20px;
             left: 0px;
         }    
         
@@ -91,11 +91,11 @@
         &:after{
             content: '';
             border: 32px solid #fff;
-            border-color: #fff rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
+            border-color: #000 rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
             height: 100%;
             display: block;
             position: absolute;
-            top: 26px;
+            top: 20px;
             left: 0px;
         }    
         
@@ -128,13 +128,18 @@
 }
 
 .shape{
-    .date{
+    .date, .name{
         position: absolute;
         top: -45px;
-        left: -20px;
+        left: -17px;
         width: 150%;
         font-size: 1rem;
         color: rgb(3, 169, 244);
+    }
+    
+    .name{
+        top: initial;
+        bottom: -45px;
     }
     
     &.die{
@@ -246,7 +251,7 @@
     text-align: center;
 }
 
-.down_ico{
+.down_ico, .delete_ico{
     @include transition(all .5s ease);
     
     &:hover{
@@ -417,4 +422,10 @@ body{
             color: $purple_secondary;
         }
     }
+}
+.age{
+    color: white;
+    z-index: 8;
+    display: block;
+    position: relative;
 }

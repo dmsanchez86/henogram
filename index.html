@@ -16,7 +16,8 @@
             
   </head>
   <body>
-  
+    
+
     <div class="app">
       
       <div class="all">
@@ -41,6 +42,7 @@
             </div>
               
             <div class="jtk-demo-main">
+              
               <div class="" id="canvas"></div>
     			      <div class="type_connector">
     			        <div class="typett">SELECCION:</div>
@@ -64,11 +66,11 @@
               <div style="padding: .5rem; overflow:auto">
                   <div class="item-drag col s6">
                     <div class="icon-drag man" data-target="man"></div>
-                    <p class="title">Hombre</p>
+                    <p class="title">Mujer</p>
                   </div>
                   <div class="item-drag col s6">
                     <div class="icon-drag woman" data-target="woman"></div>
-                    <p class="title">Mujer</p>
+                    <p class="title">Hombre</p>
                   </div>  
                   <div class="item-drag col s6">
                     <div class="icon-drag lesbian" data-target="lesbian"></div>
@@ -111,6 +113,9 @@
                 <img src="resources/save.png" style="max-width: 25px; vertical-align: middle; margin-right: 1rem"></img>
                   <a href="" class="down_ico" download="diagram.html">Guardar</a>
                   
+                  <img src="resources/delete.png" style="max-width: 25px; vertical-align: middle; margin-right: 1rem"></img>
+                  <a href="" class="delete_ico">Limpiar</a>
+                  
                  <p class="alert_i" style="display:none">Debe instalar un plugin para realizar <a href="javascript:FireShotAPI.installPlugin()">INSTALAR</a></p>   
                  
                  <p class="alert_ok" style="display:none">
@@ -149,6 +154,11 @@
     </div>
     
     <div id="settings_item" title="Item Settings">
+      <div class="content_name">
+        <label for="txt_name">Nombre Item</label>
+        <input type="text" name="txt_name" id="txt_name" />
+      </div>
+      
       <div class="content_age">
         <label for="txt_age">Edad Item</label>
         <input type="text" name="txt_age" id="txt_age" />

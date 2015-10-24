@@ -80,11 +80,11 @@
     .icon-drag.lesbian:after, .shape.lesbian:after {
       content: '';
       border: 32px solid #fff;
-      border-color: #fff rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
+      border-color: #000 rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
       height: 100%;
       display: block;
       position: absolute;
-      top: 26px;
+      top: 20px;
       left: 0px; }
   .icon-drag.homosex, .shape.homosex {
     display: block;
@@ -93,11 +93,11 @@
     .icon-drag.homosex:after, .shape.homosex:after {
       content: '';
       border: 32px solid #fff;
-      border-color: #fff rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
+      border-color: #000 rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
       height: 100%;
       display: block;
       position: absolute;
-      top: 26px;
+      top: 20px;
       left: 0px; }
   .icon-drag.pregnancy:after, .shape.pregnancy:after {
     box-sizing: border-box;
@@ -118,13 +118,16 @@
     padding: .5rem;
     z-index: 3; }
 
-.shape .date {
+.shape .date, .shape .name {
   position: absolute;
   top: -45px;
-  left: -20px;
+  left: -17px;
   width: 150%;
   font-size: 1rem;
   color: #03a9f4; }
+.shape .name {
+  top: initial;
+  bottom: -45px; }
 .shape.die {
   position: relative; }
   .shape.die:before {
@@ -210,14 +213,14 @@
 .size_content, .design_content, .die_content {
   text-align: center; }
 
-.down_ico {
+.down_ico, .delete_ico {
   -webkit-transition: all 0.5s ease;
   -khtml-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
-  .down_ico:hover {
+  .down_ico:hover, .delete_ico:hover {
     color: #2969B0;
     text-decoration: underline; }
 
@@ -335,5 +338,11 @@ body {
     background: rgba(150, 51, 255, 0.6); }
   body.theme_4 .shape .date {
     color: #4510B9; }
+
+.age {
+  color: white;
+  z-index: 8;
+  display: block;
+  position: relative; }
 
 /*# sourceMappingURL=main.css.map */

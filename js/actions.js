@@ -78,7 +78,24 @@ var updateConnections = function (conn, remove) {
         hideConnectionInfo();
 };
 
+var isLine = false;
 $(document).ready(function(){
+    
+   /* $("#canvas").click(function(e){
+        if(isLine == true){
+            var left = e.pageX;
+            var top = e.pageY;
+            var $pointone = "<div class='point' style='position:absolute;left:" + left + "px;top:" + top + "px;'>o</div>";
+            $("body").append($pointone);            
+        }else{
+            
+        }
+    });
+    
+    $(".visors").click(function(){
+        isLine = true;
+    });*/
+    
     
     if (typeof(FireShotAPI) != "undefined" && FireShotAPI.isAvailable()){
         $(".alert_i").hide();
@@ -87,6 +104,12 @@ $(document).ready(function(){
         $(".alert_i").show();
         $(".alert_ok").hide();
     }
+    
+    $(".delete_ico").click(function(e){
+         e.preventDefault();
+         instance.reset();
+         $("#canvas").empty();
+    });
     
     
     setTimeout(function(){ 
@@ -139,10 +162,23 @@ jsPlumb.ready(function(e){
        $(this).attr('href', 'data:text/html;charset=UTF-8,' + $html);
    });
    
+   $(".delete_icon").click(function(e){
+       e.preventDefault();
+       instance.remove();
+       $('.jtk-demo-main').empty();
+       
+   });
+   
     $(".icon-selector").unbind("click").click(function(){
         $(".icon-selector").removeClass("selected");
         $(this).toggleClass("selected");
-        $("#image_type").attr("src",$(this).attr("src") + "?ver=" + new Date()).parent().parent().removeClass('move');
+        $("#image_type").parent().parent().removeClass('move');
+        
+        var src = $(this).attr("src") + "?ver=" + new Date();
+        
+        setTimeout(function() {
+            $("#image_type").attr("src", src).parent().parent().removeClass('move');
+        }, 300);
         
         setTimeout(function() {
             $("#image_type").parent().parent().addClass('move');
@@ -196,10 +232,11 @@ jsPlumb.ready(function(e){
     
     
     var exampleColor = "#00f";
+    
     var exampleEndpoint = {
        //connector:[ "TriangleWave", { spring:true, stub:[ 20, 20 ] } ],
        // endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
-        paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
+        paintStyle: { width: 10, height: 10, fillStyle: exampleColor },
         isSource: true,
         EndpointStyle: { width: 5, height: 5},
         reattach: true,
@@ -214,16 +251,10 @@ jsPlumb.ready(function(e){
             strokeStyle: exampleColor,
         },
         isTarget: true,
-        // beforeDrop: function (params) {
-        //     return confirm("Vincular " + params.sourceId + " to " + params.targetId + "?");
-        // },
         dropOptions: exampleDropOptions,
         anchor:"LeftMiddle"
     };
-    
     var exampleEndpoint2 = {
-    	//connector:[ "TriangleWave", { spring:true, stub:[ 20, 20 ] } ],
-       // endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
         paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
         isSource: true,
         EndpointStyle: { width: 5, height: 5},
@@ -248,10 +279,7 @@ jsPlumb.ready(function(e){
         dropOptions: exampleDropOptions,
         anchor:"RightMiddle"
     };
-    
     var exampleEndpoint3 = {
-    	//connector:[ "TriangleWave", { spring:true, stub:[ 20, 20 ] } ],
-        //endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
         paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
         isSource: true,
         EndpointStyle: { width: 5, height: 5},
@@ -273,10 +301,7 @@ jsPlumb.ready(function(e){
         dropOptions: exampleDropOptions,
         anchor:"TopCenter"
     };
-    
     var exampleEndpoint4 = {
-    	//connector:[ "TriangleWave", { spring:true, stub:[ 20, 20 ] } ],
-        //endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
         paintStyle: { width: 10, height: 8, fillStyle: exampleColor },
         EndpointStyle: { width: 5, height: 5},
         isSource: true,
@@ -299,12 +324,6 @@ jsPlumb.ready(function(e){
         anchor:"BottomCenter",
     };
 
-   /* var anchors = [
-            [1, 1, 1, 1],
-            [0.8, 1, 0, 1],
-            [0, 0.8, -1, 0],
-            [0.2, 0, 0, -1]
-    ];*/
     var anchors = [
             [0.8, 1, 0, 1],
             [0.8, 1, 0, 1],
@@ -341,6 +360,8 @@ jsPlumb.ready(function(e){
 			
 			$(droppedElement).append("<span class='age'></span>");
 			$(droppedElement).append("<span class='date'></span>");
+			$(droppedElement).append("<span class='name'></span>");
+			$(droppedElement).append("<button type='button' style='display: none'></button>");
 			
 			droppedElement.appendTo("#canvas").css({
 			    "top": (e.clientY - 100)+"px",
@@ -352,7 +373,7 @@ jsPlumb.ready(function(e){
             var _bottom = anchors[2];
             var _right = anchors[3];*/
             
-			instance.draggable($(droppedElement), {
+			instance.draggable($(droppedElement),  {
                containment:true
             });
             
@@ -394,15 +415,17 @@ jsPlumb.ready(function(e){
                 $("#chb_die").prop("checked", true);
                 $("#txt_age").val($(this).find('.age').text()); 
                 $("#txt_date").val($(this).find('.date').text());
+                $("#txt_name").val($(this).find('.name').text());
                 $("#txt_color_text").val($(this).css('background-color'));
             }else{
-                if($(this).find('.date').text() != "" || $(this).find('.age').text() != ""){
+                if($(this).find('.date').text() != "" || $(this).find('.age').text() != "" || $(this).find('.name').text() != ""){
                     $("#txt_age").val($(this).find('.age').text()); 
                     $("#txt_date").val($(this).find('.date').text());
+                    $("#txt_name").val($(this).find('.name').text());
                     $("#txt_color_text").val($(this).css('background-color'));
                 }else{
                     $("#chb_die").prop("checked", false);
-                    $("#txt_age, #txt_date").val("");
+                    $("#txt_age, #txt_date, #txt_name").val("");
                     $("#txt_color_text").val($(this).css('background-color'));
                 }
             }
@@ -425,6 +448,10 @@ jsPlumb.ready(function(e){
 	            else
 	                obj.find('.age').text( $(this).val());
 	        }
+	    });
+	    
+	    $("#txt_name").unbind('keyup').keyup(function(e){
+            obj.find('.name').text( $(this).val());
 	    });
 	}
 	
