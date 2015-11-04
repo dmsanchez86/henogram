@@ -1,6 +1,82 @@
 @import 'variables';
 @import 'functions';
 
+body{
+    @include transition(all .2s ease);
+    
+    &.theme_2{
+        .app:before{
+            background-color: $brown_primary;
+        }
+        
+        .toolbar{
+            background: $brown_secondary;
+        }
+        
+        .settings{
+            ul{
+                li{
+                    &:hover{
+                        background: $brown_secondary;
+                    }
+                }
+            }
+        }
+        
+        .panel_options{
+            background: rgba(152, 106, 0, 0.61);
+        }
+    }
+    
+    &.theme_3{
+        .app:before{
+            background-color: $red_primary;
+        }
+        
+        .toolbar{
+            background: $red_secondary;
+        }
+        
+        .settings{
+            ul{
+                li{
+                    &:hover{
+                        background: $red_secondary;
+                    }
+                }
+            }
+        }
+        
+        .panel_options{
+            background: rgba(255, 51, 51, 0.6);
+        }
+    }
+    
+    &.theme_4{
+        .app:before{
+            background-color: $purple_primary;
+        }
+        
+        .toolbar{
+            background: $purple_secondary;
+        }
+        
+        .settings{
+            ul{
+                li{
+                    &:hover{
+                        background: $purple_secondary;
+                    }
+                }
+            }
+        }
+        
+        .panel_options{
+            background: rgba(150, 51, 255, 0.6);
+        }
+    }
+}
+
 .panel_options{
     position: absolute;
     box-sizing: border-box;
@@ -128,22 +204,41 @@
 }
 
 .shape{
-    .date, .name{
-        position: absolute;
-        top: -45px;
-        left: -17px;
-        width: 150%;
-        font-size: 1rem;
-        color: rgb(3, 169, 244);
+    .date, .name, .text{
+        position: absolute!important;
+        top: -35px!important;
+        left: -40px!important;
+        width: 150%!important;
+        font-size: .9rem!important;
+        color: #111!important;
+        line-height: 1!important;
+        
+        &:first-letter{
+            text-transform: uppercase;
+        }
+    }
+    
+    .date{
+        left: initial!important;
+        right: -61px!important;
     }
     
     .name{
-        top: initial;
-        bottom: -45px;
+        top: -35px!important;
+        left: -60px!important;
+        right: initial!important;
+    }
+    
+    .text{
+        top: initial!important;
+        bottom: -30px!important;
+        right: -41px!important;
+        margin: auto!important;
     }
     
     &.die{
         position: relative;
+        
         &:before{
             background-image: url(../resources/shapes/die.png);
             background-size: contain;
@@ -336,96 +431,11 @@ path{
     }
 }
 
-body{
-    @include transition(all .2s ease);
-    
-    &.theme_2{
-        .app:before{
-            background-color: $brown_primary;
-        }
-        
-        .toolbar{
-            background: $brown_secondary;
-        }
-        
-        .settings{
-            ul{
-                li{
-                    &:hover{
-                        background: $brown_secondary;
-                    }
-                }
-            }
-        }
-        
-        .panel_options{
-            background: rgba(152, 106, 0, 0.61);
-        }
-        
-        .shape .date{
-            color: $brown_secondary;
-        }
-    }
-    
-    &.theme_3{
-        .app:before{
-            background-color: $red_primary;
-        }
-        
-        .toolbar{
-            background: $red_secondary;
-        }
-        
-        .settings{
-            ul{
-                li{
-                    &:hover{
-                        background: $red_secondary;
-                    }
-                }
-            }
-        }
-        
-        .panel_options{
-            background: rgba(255, 51, 51, 0.6);
-        }
-        
-        .shape .date{
-            color: $red_secondary;
-        }
-    }
-    
-    &.theme_4{
-        .app:before{
-            background-color: $purple_primary;
-        }
-        
-        .toolbar{
-            background: $purple_secondary;
-        }
-        
-        .settings{
-            ul{
-                li{
-                    &:hover{
-                        background: $purple_secondary;
-                    }
-                }
-            }
-        }
-        
-        .panel_options{
-            background: rgba(150, 51, 255, 0.6);
-        }
-        
-        .shape .date{
-            color: $purple_secondary;
-        }
-    }
-}
 .age{
     color: white;
     z-index: 8;
     display: block;
     position: relative;
+    width: 100%;
+    height: 100%;
 }

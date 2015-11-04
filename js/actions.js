@@ -147,10 +147,14 @@ jsPlumb.ready(function(e){
     
     theme_selector();
    
-   $(".down_ico").click(function(e){
-       var $html = $("#canvas").html();
-       $(this).attr('download', 'example.html');
-       $(this).attr('href', 'data:text/html;charset=UTF-8,' + $html);
+   $(".down_ico").unbind('click').click(function(e){
+       if($('#canvas').children().length > 0){
+           var $html = $("#canvas").html();
+           $(this).attr('download', 'example.html');
+           $(this).attr('href', 'data:text/html;charset=UTF-8,' + $html);
+       }else{
+           e.preventDefault();
+       }
    });
    
    $(".delete_icon").click(function(e){
@@ -413,16 +417,18 @@ jsPlumb.ready(function(e){
                 $("#txt_age").val($(this).find('.age').text()); 
                 $("#txt_date").val($(this).find('.date').text());
                 $("#txt_name").val($(this).find('.name').text());
+                $("#txt_text").val($(this).find('.text').text());
                 $("#txt_color_text").val($(this).css('background-color'));
             }else{
                 if($(this).find('.date').text() != "" || $(this).find('.age').text() != "" || $(this).find('.name').text() != ""){
                     $("#txt_age").val($(this).find('.age').text()); 
                     $("#txt_date").val($(this).find('.date').text());
+                    $("#txt_text").val($(this).find('.text').text());
                     $("#txt_name").val($(this).find('.name').text());
                     $("#txt_color_text").val($(this).css('background-color'));
                 }else{
                     $("#chb_die").prop("checked", false);
-                    $("#txt_age, #txt_date, #txt_name").val("");
+                    $("#txt_age, #txt_date, #txt_name, #txt_text").val("");
                     $("#txt_color_text").val($(this).css('background-color'));
                 }
             }
@@ -449,6 +455,10 @@ jsPlumb.ready(function(e){
 	    
 	    $("#txt_name").unbind('keyup').keyup(function(e){
             obj.find('.name').text( $(this).val());
+	    });
+	    
+	    $("#txt_text").unbind('keyup').keyup(function(e){
+            obj.find('.text').text( $(this).val());
 	    });
 	}
 	
