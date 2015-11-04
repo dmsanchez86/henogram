@@ -124,30 +124,21 @@ $(document).ready(function(){
         $( "#settings_item" ).dialog({ autoOpen: false });
     }, 1000);
     
-    setInterval(function(){
-        $( "svg path" ).click(function() {console.error(":P");
+   setInterval(function(){
+        $( "svg path" ).unbind('dblclick').dblclick(function() {
           $( "#settings_path" ).dialog( "open" );
-          console.log($(this));
           functions_path($(this));
         });
     },1000);
     
-    function functions_path(path){
-	    $('#btn_delete_path').unbind('click').click(function(){
-	        path.parent().remove();
-	        $( "#settings_path" ).dialog( "close" );
-	    });
+    function functions_path(path){  
 	    
 	    $('#txt_size_path').unbind('change').change(function(){
-	        console.log($(this).val());
-	        
 	        path.css('stroke-width', $(this).val()+"px");
 	    });
 	    
 	    $('#txt_color_path').unbind('change').change(function(){
-	        console.log($(this).val());
-	        
-	        path.css('stroke', $(this).val());
+	        path.css('stroke', "#" + $(this).val());
 	    });
 	}
 });
@@ -166,7 +157,6 @@ jsPlumb.ready(function(e){
        e.preventDefault();
        instance.remove();
        $('.jtk-demo-main').empty();
-       
    });
    
     $(".icon-selector").unbind("click").click(function(){
@@ -206,12 +196,18 @@ jsPlumb.ready(function(e){
 	    connector:"Straight",
 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
 	});
-	
-   /*instance.bind("click", function(conn) {
-    instance.detach(conn);
-   });*/
 
-
+   instance.bind("dblclick", function(conn) {
+       var $_conection = conn;
+        
+        $( "#settings_path" ).dialog( "open" );
+        
+        $('#btn_delete_path').unbind('click').click(function(){
+            jsPlumb.detach($_conection);
+	        $( "#settings_path" ).dialog( "close" );
+	    });
+	    
+   });
 
 	instance.setContainer($("#dropArea"));
 	
@@ -236,9 +232,9 @@ jsPlumb.ready(function(e){
     var exampleEndpoint = {
        //connector:[ "TriangleWave", { spring:true, stub:[ 20, 20 ] } ],
        // endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
-        paintStyle: { width: 10, height: 10, fillStyle: exampleColor },
+        paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
         isSource: true,
-        EndpointStyle: { width: 5, height: 5},
+        EndpointStyle: { width: 2, height: 2},
         reattach: true,
         scope: "blue",
         connectorStyle: {
@@ -255,9 +251,9 @@ jsPlumb.ready(function(e){
         anchor:"LeftMiddle"
     };
     var exampleEndpoint2 = {
-        paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
+        paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
         isSource: true,
-        EndpointStyle: { width: 5, height: 5},
+        EndpointStyle: { width: 2, height: 2},
         reattach: true,
         scope: "blue",
         connectorStyle: {
@@ -303,7 +299,7 @@ jsPlumb.ready(function(e){
     };
     var exampleEndpoint4 = {
         paintStyle: { width: 10, height: 8, fillStyle: exampleColor },
-        EndpointStyle: { width: 5, height: 5},
+        EndpointStyle: { width: 2, height: 2},
         isSource: true,
         reattach: true,
         scope: "blue",
@@ -361,11 +357,12 @@ jsPlumb.ready(function(e){
 			$(droppedElement).append("<span class='age'></span>");
 			$(droppedElement).append("<span class='date'></span>");
 			$(droppedElement).append("<span class='name'></span>");
+			$(droppedElement).append("<span class='text'></span>");
 			$(droppedElement).append("<button type='button' style='display: none'></button>");
 			
 			droppedElement.appendTo("#canvas").css({
-			    "top": (e.clientY - 100)+"px",
-			    "left": (e.clientX - 400)+"px"
+			    "top": (e.pageY) -(parseInt($(".all").css("margin-top")) + 50 ) +"px",
+			    "left": (e.pageX) - ($(".content.toolbox.row").width() + 40) +"px",
 			});
 			
             /*var _top = anchors[0];
@@ -383,10 +380,10 @@ jsPlumb.ready(function(e){
                 resize : function(event, ui) {     
                     instance.repaintEverything();
                 },
-                maxWidth:200, // gets set once, but doesn't update! WHY?
-                minWidth:62,
+                maxWidth:110, // gets set once, but doesn't update! WHY?
+                minWidth:65,
                 minHeight:65,
-                maxHeight:200
+                maxHeight:110
             });
 
 			instance.addEndpoint($(droppedElement), exampleEndpoint);
@@ -403,7 +400,7 @@ jsPlumb.ready(function(e){
 	
 	function event_shape(){
 	    
-	    $(".shape").unbind("click").click(function(){
+	    $(".shape").unbind("dblclick").dblclick(function(){
             $("#settings_item").dialog( "open" );
             text_shape($(this));
             delete_shape($(this));

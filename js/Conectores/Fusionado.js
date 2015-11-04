@@ -29,7 +29,7 @@
             compressedThreshold = params.compressedThreshold || 5;
 
         this._compute = function(paintInfo, paintParams) {
-                
+            
              _super.addSegment(this, "Straight", { 
                 x1:paintInfo.sx, 
                 y1:paintInfo.sy,

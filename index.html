@@ -84,6 +84,9 @@
                     <div class="icon-drag pregnancy" data-target="pregnancy"></div>
                     <p class="title">Embarazo</p>
                   </div>
+                  <div class="col s6">
+                    <p class="title"><a href="javascript:line()">Linea</a></p>
+                  </div>
               </div>
               <h3>Conectores</h3>
               <div class="conectors_content">
@@ -93,8 +96,6 @@
                 <img class="icon-selector" type="Cercano" src="resources/shapes/cercano.png">
                 <h5>Cercano - Hostil</h5>
                 <img class="icon-selector" type="Cercano_Hostil" src="resources/shapes/cercano_hostil.png">
-                <!--<h5>Cortado</h5>
-                <img class="icon-selector" type="Cortado" src="resources/shapes/cortado.png">-->
                 <h5>Distante</h5>
                 <img class="icon-selector" type="Distante" src="resources/shapes/distante.png">
                 <h5>Enfocado en</h5>
@@ -146,7 +147,8 @@
         <label for="txt_size_path">Tamaño</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="number" max="4" min="1" value="1" id="txt_size_path" size="4">
       </div>
       <div class="size_content">
-        <label for="txt_color_path">Color</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="color" id="txt_color_path" >
+        <label for="txt_color_path">Color</label>&nbsp;&nbsp;
+        <input class="color" id="txt_color_path" >
       </div>
       <div class="container_btn">
         <button type="button" id="btn_delete_path">Borrar</button>
@@ -187,9 +189,9 @@
     
     <!--Scripts and Libraries-->
     <script src="js/prefixfree.min.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
    
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/jsPlumb-2.0.2-min.js"></script>
     
@@ -205,6 +207,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
     <script src="js/actions.js"></script>
     <script src="js/fsapi.js"></script>
+    <script src="js/jsplumb-persistence-plugin.js"></script>
+    <script src="js/jscolor/jscolor.js"></script>
     
   </body>
 </html>
