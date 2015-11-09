@@ -132,12 +132,49 @@ body{
         background: $man;
         padding: .5rem;
         @include border-radius(50%);
+        
+        &.studied{
+            background: white;
+            border: solid thin #323232;
+            
+            &:after{
+                width: 80%;
+                height: 80%;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: solid thin #323232;
+                content: '';
+                @include border-radius(50%);
+            }
+        }
     }
     
     &.woman{
         display: block;
         background: $woman;
         padding: .5rem;
+        
+        &.studied{
+            background: white;
+            border: solid thin #323232;
+            
+            &:after{
+                width: 80%;
+                height: 80%;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: solid thin #323232;
+                content: '';
+            }
+        }
     }
     
     &.lesbian{
@@ -236,7 +273,7 @@ body{
         margin: auto!important;
     }
     
-    &.die{
+    &.ind_abortion{
         position: relative;
         
         &:before{
@@ -253,6 +290,24 @@ body{
             left: 0;
             right: 0;
             content: '';
+        }
+    }
+    
+    &.esp_abortion{
+        position: relative;
+        
+        &:before{
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            margin: auto;
+            background: #323232;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            @include border-radius(50%);
         }
     }
 }
@@ -343,7 +398,7 @@ body{
 }
 
 .size_content,.design_content,.die_content {
-    text-align: center;
+    text-align: left;
 }
 
 .down_ico, .delete_ico{

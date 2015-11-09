@@ -95,10 +95,44 @@ body {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%; }
+    .icon-drag.man.studied, .shape.man.studied {
+      background: white;
+      border: solid thin #323232; }
+      .icon-drag.man.studied:after, .shape.man.studied:after {
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: solid thin #323232;
+        content: '';
+        -webkit-border-radius: 50%;
+        -khtml-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%; }
   .icon-drag.woman, .shape.woman {
     display: block;
     background: #2daae1;
     padding: .5rem; }
+    .icon-drag.woman.studied, .shape.woman.studied {
+      background: white;
+      border: solid thin #323232; }
+      .icon-drag.woman.studied:after, .shape.woman.studied:after {
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: solid thin #323232;
+        content: ''; }
   .icon-drag.lesbian, .shape.lesbian {
     display: block;
     background: #2daae1;
@@ -172,9 +206,9 @@ body {
   bottom: -30px !important;
   right: -41px !important;
   margin: auto !important; }
-.shape.die {
+.shape.ind_abortion {
   position: relative; }
-  .shape.die:before {
+  .shape.ind_abortion:before {
     background-image: url(../resources/shapes/die.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -188,6 +222,25 @@ body {
     left: 0;
     right: 0;
     content: ''; }
+.shape.esp_abortion {
+  position: relative; }
+  .shape.esp_abortion:before {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    background: #323232;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    -webkit-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%; }
 
 .size_content span {
   margin-right: 1rem; }
@@ -255,7 +308,7 @@ body {
   width: 100%; }
 
 .size_content, .design_content, .die_content {
-  text-align: center; }
+  text-align: left; }
 
 .down_ico, .delete_ico {
   -webkit-transition: all 0.5s ease;

@@ -354,6 +354,10 @@ jsPlumb.ready(function(e){
                 $(droppedElement).addClass("shape homosex");
             else if($target == "pregnancy")
                 $(droppedElement).addClass("shape pregnancy");
+            else if($target == "woman studied")
+                $(droppedElement).addClass("shape woman studied");
+            else if($target == "man studied")
+                $(droppedElement).addClass("shape man studied");
             else
                 $(droppedElement).addClass("shape");
             
@@ -403,54 +407,47 @@ jsPlumb.ready(function(e){
 	var timeout = null;
 	
 	function event_shape(){
-	    
 	    $(".shape").unbind("dblclick").dblclick(function(){
-            $("#settings_item").dialog( "open" );
-            text_shape($(this));
+	        
+            $("#settings_item").dialog( "open" );debugger
             delete_shape($(this));
             change_background($(this));
+            text_shape($(this));
             resize_obj($(this));
             die_obj($(this));
             
-            if ($(this).attr("class").indexOf("die")!=-1){
-                $("#chb_die").prop("checked", true);
+            if ($(this).hasClass("ind_abortion")){
+                $("#chb_ind_a").prop("checked", true);
+            }else if($(this).hasClass("esp_abortion")){
+                $("#chb_esp_a").prop("checked", true);
+            }else{
+	            $("#chb_ind_a,#chb_esp_a").prop("checked", false);
+	            $("#chb_none + label").hide();
+            }
+            if(
+                $(this).find('.date').text() != "" || 
+                $(this).find('.age').text() != "" ||
+                $(this).find('.text').text() != "" ||
+                $(this).find('.name').text() != ""){
                 $("#txt_age").val($(this).find('.age').text()); 
                 $("#txt_date").val($(this).find('.date').text());
-                $("#txt_name").val($(this).find('.name').text());
                 $("#txt_text").val($(this).find('.text').text());
+                $("#txt_name").val($(this).find('.name').text());
                 $("#txt_color_text").val($(this).css('background-color'));
             }else{
-                if($(this).find('.date').text() != "" || $(this).find('.age').text() != "" || $(this).find('.name').text() != ""){
-                    $("#txt_age").val($(this).find('.age').text()); 
-                    $("#txt_date").val($(this).find('.date').text());
-                    $("#txt_text").val($(this).find('.text').text());
-                    $("#txt_name").val($(this).find('.name').text());
-                    $("#txt_color_text").val($(this).css('background-color'));
-                }else{
-                    $("#chb_die").prop("checked", false);
-                    $("#txt_age, #txt_date, #txt_name, #txt_text").val("");
-                    $("#txt_color_text").val($(this).css('background-color'));
-                }
+                $("#chb_die").prop("checked", false);
+                $("#txt_age, #txt_date, #txt_name, #txt_text").val("");
+                $("#txt_color_text").val($(this).css('background-color'));
             }
-        });
-        
-        $(".panel_options").unbind('mouseenter').mouseenter(function(){
-            clearTimeout(timeout);
-        }).unbind('mouseleave').mouseleave(function(){
-            setTimeout(function(){
-                $(".panel_options").removeClass("open");
-            },500);
         });
 	}
 	
 	function text_shape(obj){
-	    $("#txt_age").unbind('keyup').keyup(function(e){
-	        if($(this).val().length < 3){
-	            if(isNaN($(this).val()))
-	                $("#txt_age").val("");
-	            else
-	                obj.find('.age').text( $(this).val());
-	        }
+	    $("#txt_age").unbind('change').change(function(e){
+            if(isNaN($(this).val()))
+                $("#txt_age").val("");
+            else
+                obj.find('.age').text( $(this).val());
 	    });
 	    
 	    $("#txt_name").unbind('keyup').keyup(function(e){
@@ -475,7 +472,7 @@ jsPlumb.ready(function(e){
 	
 	function change_background(obj){
 	    $("#txt_color_text").unbind("change").change(function(){
-	        obj.css("background", $("#txt_color_text").val());
+	        obj.css("background", "#" + $(this).val());
 	    });
 	    
 	    $("#txt_date").unbind("change").change(function(){
@@ -484,8 +481,19 @@ jsPlumb.ready(function(e){
 	}
 	
 	function die_obj(obj){
-	    $("#chb_die").unbind("change").change(function(){
-	        obj.toggleClass("die");
+	    $("#chb_ind_a").unbind("change").change(function(){
+	        obj.removeClass("ind_abortion").toggleClass("esp_abortion");
+	        $("#chb_none + label").show();
+	    });
+	    
+	    $("#chb_esp_a").unbind("change").change(function(){
+	        obj.removeClass("esp_abortion").toggleClass("ind_abortion");
+	        $("#chb_none + label").show();
+	    });
+	    
+	    $("#chb_none").unbind("change").change(function(){
+	        obj.removeClass("esp_abortion ind_abortion");
+	        $("#chb_none + label").hide();
 	    });
 	}
 	

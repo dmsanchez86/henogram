@@ -227,10 +227,17 @@ path {
                     <p class="title">Homosexual</p>
                   </div>
                   <div class="item-drag col s6">
+                    <div class="icon-drag man studied" data-target="man studied"></div>
+                    <p class="title">Mujer Estudiada</p>
+                  </div> 
+                  <div class="item-drag col s6">
+                    <div class="icon-drag woman studied" data-target="woman studied"></div>
+                    <p class="title">Hombre Estudiado</p>
+                  </div> 
+                  <div class="item-drag col s6">
                     <div class="icon-drag pregnancy" data-target="pregnancy"></div>
                     <p class="title">Embarazo</p>
                   </div>
-                  
                   <!--<div class="col s6">-->
                   <!--  <p class="title"><a href="javascript:line()">Linea</a></p>-->
                   <!--</div>-->
@@ -305,33 +312,37 @@ path {
     <div id="settings_item" title="Item Settings">
       <div class="content_name">
         <label for="txt_text">Texto Item</label>
-        <input type="text" name="txt_text" id="txt_text" />
+        <input type="text" name="txt_text" id="txt_text" style="max-width: 120px;margin: 0;height: auto;" />
       </div>
       
       <div class="content_name">
         <label for="txt_name">Nombre Item</label>
-        <input type="text" name="txt_name" id="txt_name" />
+        <input type="text" name="txt_name" id="txt_name" style="max-width: 120px;margin: 0;height: auto;"/>
       </div>
       
       <div class="content_age">
         <label for="txt_age">Edad Item</label>
-        <input type="text" name="txt_age" id="txt_age" />
+        <input type="number" min="0" max="110" name="txt_age" id="txt_age" style="max-width: 70px;margin: 0;height: auto;"/>
       </div>
       
       <div class="content_birth">
         <label for="txt_date">Fecha de Nacimiento</label>
-        <input type="date" name="txt_date" id="txt_date" />
+        <input type="date" name="txt_date" id="txt_date" style="max-width: 130px;margin: 0;height: auto;"/>
       </div>
 
       
       <div class="design_content">
-        <label for="txt_color_text">Diseño</label>
-        <span>Background</span><input type="color" name="txt_color" id="txt_color_text" />
+        <label for="txt_color_text">Color del item</label>&nbsp;&nbsp;
+        <input class="color" id="txt_color_text" style="max-width: 120px;margin: 0;height: auto;">
       </div>
       
       <div class="die_content">
-        <label for="chb_die">Estado</label>
-        <span>Muerte</span><input type="checkbox" name="chb_die" id="chb_die" />
+         <input type="radio" name="chb_abortion" id="chb_ind_a" />
+        <label for="chb_ind_a">Aborto Provocado</label>
+        <input type="radio" name="chb_abortion" id="chb_esp_a" />
+        <label for="chb_esp_a">Aborto Espontáneo</label>
+        <input type="radio" name="chb_abortion" id="chb_none" />
+        <label for="chb_none" style="display: none;">Ninguno</label>
       </div>
       
       <div class="container_btn">
