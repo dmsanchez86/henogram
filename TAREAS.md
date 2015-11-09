@@ -1,9 +1,14 @@
--> falta embarazo el triangulo en forma normal
--> falta redimensionar dinamicamente los componentes
--> los dos triangulos negros y que se les pueda cambiar el color (a los extenos en todo)
--> por defecto la figura es transparente negra
--> falta exportar a formato imagemn
--> falta poner nombre a los componentes al centro y edad
+-> falta embarazo el triangulo en forma normal -- completo
+-> falta redimensionar dinamicamente los componentes -- completo
+-> los dos triangulos negros y que se les pueda cambiar el color (a los extenos en todo)  -- completo
+-> falta poner nombre a los componentes al centro y edad -- completo
+-> falta fecha de nacimiento edad y muerte -- completo
+-> aplicar la muerte en la barra de opciones en todas las figuras -- completo
+-> mas opaco los endpoint -- Completada
+-> exportar formato html -- completo
 -> faltan poner conexiones de relaciones
--> falta fecha de nacimiento edad y muerte
--> aplicar la muerte en la barra de opciones en todas las figuras
+-> dejar colores predeterminados
+-> por defecto la figura es transparente negra
+-> falta exportar a formato imagen
+-> falta flecha de direccion
+-> dibujkar la raya 
