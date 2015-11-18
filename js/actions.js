@@ -145,6 +145,11 @@ $(document).ready(function(){
 
 jsPlumb.ready(function(e){
     
+    // Oculto el cargador
+    setTimeout(function(){
+        $('.loader').addClass('closed');
+    },1000);
+    
     if(localStorage.getItem('autoload') != null){
         //Clear jsPlumb memory of connections/connectors & endpoints
         //sjsPlumb.reset();debugger

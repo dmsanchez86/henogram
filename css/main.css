@@ -430,7 +430,7 @@ path {
     right: 1%;
     color: white;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 12px;
     text-transform: uppercase;
     cursor: pointer; }
     .overlay .close_overlay:hover {
@@ -441,5 +441,31 @@ path {
   text-align: center; }
   .draw_line:hover {
     text-decoration: underline; }
+
+.loader {
+  z-index: 9999;
+  position: fixed;
+  background: white;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  -webkit-transition: opacity 1s ease;
+  -khtml-transition: opacity 1s ease;
+  -moz-transition: opacity 1s ease;
+  -ms-transition: opacity 1s ease;
+  -o-transition: opacity 1s ease;
+  transition: opacity 1s ease; }
+  .loader.closed {
+    opacity: 0; }
+  .loader > div {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
 
 /*# sourceMappingURL=main.css.map */
