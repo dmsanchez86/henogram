@@ -146,9 +146,18 @@ $(document).ready(function(){
 jsPlumb.ready(function(e){
     
     theme_selector();
+    
+    $('.draw_line').unbind('click').click(function(){
+        $('.overlay').toggleClass('open');
+    });
+    
+    $('.close_overlay').unbind('click').click(function(){
+        $('.overlay').removeClass('open');
+        
+    });
    
    $(".down_ico").unbind('click').click(function(e){
-       if($('#canvas').children().length > 0){
+       if($('#canvas').children().length > 2){
            var $html = $("#canvas").html();
            $(this).attr('download', 'example.html');
            $(this).attr('href', 'data:text/html;charset=UTF-8,' + $html);
@@ -252,7 +261,10 @@ jsPlumb.ready(function(e){
         },
         isTarget: true,
         dropOptions: exampleDropOptions,
-        anchor:"LeftMiddle"
+        anchor:"LeftMiddle",
+        isSource: true,
+        maxConnections: 10,
+        isTarget: true
     };
     var exampleEndpoint2 = {
         paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
@@ -277,7 +289,8 @@ jsPlumb.ready(function(e){
         //     return confirm("Vincular " + params.sourceId + " to " + params.targetId + "?");
         // },
         dropOptions: exampleDropOptions,
-        anchor:"RightMiddle"
+        anchor:"RightMiddle",
+        maxConnections: 10
     };
     var exampleEndpoint3 = {
         paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
@@ -299,7 +312,8 @@ jsPlumb.ready(function(e){
         //     return confirm("Vincular " + params.sourceId + " to " + params.targetId + "?");
         // },
         dropOptions: exampleDropOptions,
-        anchor:"TopCenter"
+        anchor:"TopCenter",
+        maxConnections: 10
     };
     var exampleEndpoint4 = {
         paintStyle: { width: 10, height: 8, fillStyle: exampleColor },
@@ -322,6 +336,7 @@ jsPlumb.ready(function(e){
         // },
         dropOptions: exampleDropOptions,
         anchor:"BottomCenter",
+        maxConnections: 10
     };
 
     var anchors = [

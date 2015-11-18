@@ -6,7 +6,8 @@
             return;
         }
         var conn=options.savedObj;
-        plumbInstance = plumbInstance || jsPlumb;
+        //plumbInstance = plumbInstance || jsPlumb;
+        plumbInstance = instance;
         var blocks = conn.blocks;
         for (var i = 0; i < blocks.length; i++) {
             var o = blocks[i];
@@ -22,7 +23,7 @@
                 });
                 elem.html(o.html);
                 elem.attr({
-                    'class': 'component window'
+                    'class': 'component window shape woman'
                 });
                 $(options.containerSelector).append(elem);
             } else {
@@ -83,7 +84,8 @@
         if(!options || !options.selector){
             return {};
         }
-        plumbInstance = plumbInstance || jsPlumb;
+        plumbInstance = instance;
+        //plumbInstance = plumbInstance || jsPlumb;
         var connection;
         connection = plumbInstance.getAllConnections();
         var blocks = [];
