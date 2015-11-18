@@ -145,6 +145,24 @@ $(document).ready(function(){
 
 jsPlumb.ready(function(e){
     
+    if(localStorage.getItem('autoload') != null){
+        //Clear jsPlumb memory of connections/connectors & endpoints
+        //sjsPlumb.reset();debugger
+
+        //Clear DOM
+       /* $("#canvas").empty();
+        var elem = $("<div/>");
+        elem.attr('class', "shape");
+        $("#canvas").append(elem);*/
+
+        //Load saved graph 
+      /*  var v = localStorage.getItem('autoload');
+        jsPlumb.load({
+            savedObj:JSON.parse(v), 
+            containerSelector:"#canvas"
+        });*/
+    }
+    
     theme_selector();
     
     $('.draw_line').unbind('click').click(function(){
@@ -157,10 +175,20 @@ jsPlumb.ready(function(e){
     });
    
    $(".down_ico").unbind('click').click(function(e){
+        var obj=jsPlumb.save({selector:".shape"});
+        
        if($('#canvas').children().length > 2){
+           localStorage.setItem('autoload', JSON.stringify(obj));
            var $html = $("#canvas").html();
-           $(this).attr('download', 'example.html');
-           $(this).attr('href', 'data:text/html;charset=UTF-8,' + $html);
+           var name_file = prompt('Nombre del archivo');
+           
+           if(name_file != null){
+            $(this).attr('download', name_file + '.html');
+            $(this).attr('href', 'data:text/html;charset=UTF-8,' + $html);   
+           }else{
+                e.preventDefault();
+               return;
+           }
        }else{
            e.preventDefault();
        }
