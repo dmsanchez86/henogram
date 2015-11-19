@@ -146,9 +146,8 @@ $(document).ready(function(){
 jsPlumb.ready(function(e){
     
     // Oculto el cargador
-    setTimeout(function(){
-        $('.loader').addClass('closed');
-    },1000);
+    setTimeout(function(){ $('.loader').addClass('closed'); },1000);
+    setTimeout(function(){ $('.loader').css('z-index','-1'); },1500);
     
     if(localStorage.getItem('autoload') != null){
         //Clear jsPlumb memory of connections/connectors & endpoints
