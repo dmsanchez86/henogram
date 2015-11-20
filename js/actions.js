@@ -178,7 +178,7 @@ jsPlumb.ready(function(e){
         
     });
    
-   $(".down_ico").unbind('click').click(function(e){
+   $(".export_ico").unbind('click').click(function(e){
         var obj=jsPlumb.save({selector:".shape"});
         
        if($('#canvas').children().length > 2){
@@ -196,6 +196,10 @@ jsPlumb.ready(function(e){
        }else{
            e.preventDefault();
        }
+   });
+   
+   $(".import_ico").unbind('click').click(function(e){
+        e.preventDefault();
    });
    
    $(".delete_icon").click(function(e){

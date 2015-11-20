@@ -310,14 +310,14 @@ body {
 .size_content, .design_content, .die_content {
   text-align: left; }
 
-.down_ico, .delete_ico {
+.down_ico, .delete_ico, .export_ico, .import_ico {
   -webkit-transition: all 0.5s ease;
   -khtml-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
-  .down_ico:hover, .delete_ico:hover {
+  .down_ico:hover, .delete_ico:hover, .export_ico:hover, .import_ico:hover {
     color: #2969B0;
     text-decoration: underline; }
 
@@ -467,5 +467,8 @@ path {
     left: 0;
     right: 0;
     bottom: 0; }
+
+.ui-accordion .ui-accordion-content:last-child > div {
+  margin: .5rem 0; }
 
 /*# sourceMappingURL=main.css.map */

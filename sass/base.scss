@@ -401,7 +401,7 @@ body{
     text-align: left;
 }
 
-.down_ico, .delete_ico{
+.down_ico, .delete_ico,.export_ico,.import_ico{
     @include transition(all .5s ease);
     
     &:hover{
@@ -561,5 +561,13 @@ path{
         left: 0;
         right: 0;
         bottom: 0;
+    }
+}
+
+.ui-accordion .ui-accordion-content{
+    &:last-child{
+        > div{
+            margin: .5rem 0;
+        }
     }
 }
