@@ -287,6 +287,7 @@ path {
                   <div>
                     <img src="resources/import.png" style="max-width: 25px; vertical-align: middle; margin-right: 1rem"></img>
                     <a href="" class="down_ico import_ico" download="diagram.html">Importar</a>
+                    <input type="file" id="files" name="files[]" multiple />
                   </div>
                   
                   <div>
@@ -299,11 +300,13 @@ path {
                     <a href="" class="delete_ico">Limpiar</a>
                   </div>
                   
-                  
-                 <p class="alert_i" style="display:none">Debe instalar un plugin para realizar <a href="javascript:FireShotAPI.installPlugin()">INSTALAR</a></p>   
+                  <!--
+                 <p class="alert_i" style="display:none">Debe instalar un plugin para realizar <a href="javascript:FireShotAPI.installPlugin()">INSTALAR</a></p>   -->
                  
                  <p class="alert_ok" style="display:none">
-                   El plugin esta Activo <a href="javascript:FireShotAPI.savePage(false)">GUARDAR</a></p> 
+                      <a class="descargar_" href="">Descargar</a>
+                  </p>
+
                  </p>
               </div>
             </div>

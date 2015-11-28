@@ -37,7 +37,7 @@
         }
         var connections = conn.connections;
         for (var i = 0; i < connections.length; i++) {
-            console.log(connections[i].endpoint);
+            //console.log(connections[i].endpoint);
 
             var connection1 = plumbInstance.connect({
                 source: connections[i].sourceId,
@@ -123,6 +123,10 @@
                 case "State Machine":
                     {
                         attrs["curviness"] = connector.getCurviness();
+                        break;
+                    }
+                default:
+                    {
                         break;
                     }
             }

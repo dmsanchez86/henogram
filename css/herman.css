@@ -28,3 +28,14 @@
 .visors.selected{
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.06),0 2px 5px 0 rgba(0,0,0,.2);
 }
+a.descargar_ {
+    background: #C1BEBE;
+    padding: 6px;
+    border-radius: 14px;
+    font-size: 11px;
+    margin: 0 auto;
+}
+
+p.alert_ok {
+    text-align: center;
+}

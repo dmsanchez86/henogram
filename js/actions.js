@@ -179,9 +179,35 @@ jsPlumb.ready(function(e){
     });
    
    $(".export_ico").unbind('click').click(function(e){
-        var obj=jsPlumb.save({selector:".shape"});
+        e.preventDefault();
+
+        if( $('#canvas').children().length > 2 ){
+            
+            var filename = "";
+            var export_ = prompt("Porfavor introduzca un nombre de archivo ", "Exportar");
+            
+            if (export_ != null) {
+                filename = export_;
+            }else{
+                filename = "exportar";
+            }
+
+            const MIME_TYPE = 'text/plain';
+            var obj = JSON.stringify( jsPlumb.save({selector:".shape"}) );
+            var bb = new Blob([ obj ], {type: MIME_TYPE});
         
-       if($('#canvas').children().length > 2){
+            var a = $(".descargar_");
+                a.attr("download", filename + ".json");
+                a.attr("href" , window.URL.createObjectURL(bb));
+                a.text("Descarga Lista");
+            $(".alert_ok").show();
+
+        }else{
+           alert("No hay datos");
+        }
+
+
+       /*
            localStorage.setItem('autoload', JSON.stringify(obj));
            var $html = $("#canvas").html();
            var name_file = prompt('Nombre del archivo');
@@ -195,11 +221,12 @@ jsPlumb.ready(function(e){
            }
        }else{
            e.preventDefault();
-       }
+       }*/
    });
    
    $(".import_ico").unbind('click').click(function(e){
         e.preventDefault();
+        $("#files").click();
    });
    
    $(".delete_icon").click(function(e){
@@ -586,3 +613,34 @@ jsPlumb.ready(function(e){
 	}
 });
 
+
+function handleFileSelect(evt) {
+    var files = evt.target.files;
+
+    for (var i = 0, f; f = files[i]; i++) {
+      var reader = new FileReader();
+      reader.onload = (function(theFile) {
+        return function(e) {
+            //try {
+                var compila = JSON.parse( e.target.result );
+                
+                instance.reset();
+                $("#canvas").empty();
+                jsPlumb.load({
+                               savedObj:compila,
+                               containerSelector:"#canvas"
+                              }
+                            );
+
+            // catch (e) {
+              //  alert("El archivo que desea importar no es valido");
+               // return false;
+            //}
+
+        };
+      })(f);
+      reader.readAsText(f);
+    }
+}
+
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
