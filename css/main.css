@@ -83,8 +83,9 @@ body {
   line-height: 1;
   text-shadow: 0 0 1px #323232;
   line-height: 50px;
-  font-size: 1.5rem; }
-  .icon-drag.man, .shape.man {
+  font-size: 1.5rem;
+  box-shadow: 0 0 13px 0px rgba(0, 0, 0, 0.33); }
+  .icon-drag[type="woman"], .shape[type="woman"] {
     content: attr(text);
     display: block;
     background: #e94e1b;
@@ -95,45 +96,56 @@ body {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%; }
-    .icon-drag.man.studied, .shape.man.studied {
-      background: white;
-      border: solid thin #323232; }
-      .icon-drag.man.studied:after, .shape.man.studied:after {
-        width: 80%;
-        height: 80%;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: solid thin #323232;
-        content: '';
-        -webkit-border-radius: 50%;
-        -khtml-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-        border-radius: 50%; }
-  .icon-drag.woman, .shape.woman {
+  .icon-drag[type="woman_studied"], .shape[type="woman_studied"] {
+    content: attr(text);
+    display: block;
+    padding: .5rem;
+    background: #e94e1b;
+    -webkit-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%; }
+    .icon-drag[type="woman_studied"]:after, .shape[type="woman_studied"]:after {
+      width: 75%;
+      height: 75%;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      border: solid thin #111;
+      content: '';
+      -webkit-border-radius: 50%;
+      -khtml-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%; }
+  .icon-drag[type="man"], .shape[type="man"] {
     display: block;
     background: #2daae1;
     padding: .5rem; }
-    .icon-drag.woman.studied, .shape.woman.studied {
-      background: white;
-      border: solid thin #323232; }
-      .icon-drag.woman.studied:after, .shape.woman.studied:after {
-        width: 80%;
-        height: 80%;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: solid thin #323232;
-        content: ''; }
-  .icon-drag.lesbian, .shape.lesbian {
+  .icon-drag[type="man_studied"], .shape[type="man_studied"] {
+    display: block;
+    background: #2daae1;
+    padding: .5rem; }
+    .icon-drag[type="man_studied"]:after, .shape[type="man_studied"]:after {
+      width: 75%;
+      height: 75%;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.85);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: solid thin #111;
+      content: ''; }
+  .icon-drag[type="lesbian"], .shape[type="lesbian"] {
     display: block;
     background: #2daae1;
     padding: .5rem;
@@ -143,7 +155,7 @@ body {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%; }
-    .icon-drag.lesbian:after, .shape.lesbian:after {
+    .icon-drag[type="lesbian"]:after, .shape[type="lesbian"]:after {
       content: '';
       border: 32px solid #fff;
       border-color: #000 rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
@@ -152,11 +164,11 @@ body {
       position: absolute;
       top: 20px;
       left: 0px; }
-  .icon-drag.homosex, .shape.homosex {
+  .icon-drag[type="homosex"], .shape[type="homosex"] {
     display: block;
     background: #e94e1b;
     padding: .5rem; }
-    .icon-drag.homosex:after, .shape.homosex:after {
+    .icon-drag[type="homosex"]:after, .shape[type="homosex"]:after {
       content: '';
       border: 32px solid #fff;
       border-color: #000 rgba(255, 255, 255, 0) rgba(255, 16, 16, 0) transparent;
@@ -165,24 +177,26 @@ body {
       position: absolute;
       top: 20px;
       left: 0px; }
-  .icon-drag.pregnancy:after, .shape.pregnancy:after {
-    box-sizing: border-box;
-    content: '';
-    border: 32px solid #323232;
-    display: block;
-    height: 100%;
-    border-color: transparent transparent #2daae1 transparent;
-    position: relative;
-    top: -10px; }
-  .icon-drag.pregnancy:before, .shape.pregnancy:before {
-    content: attr(text);
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    padding: .5rem;
-    z-index: 3; }
+  .icon-drag[type="pregnancy"], .shape[type="pregnancy"] {
+    box-shadow: none; }
+    .icon-drag[type="pregnancy"]:after, .shape[type="pregnancy"]:after {
+      box-sizing: border-box;
+      content: '';
+      border: 32px solid #323232;
+      display: block;
+      height: 100%;
+      border-color: transparent transparent #2daae1 transparent;
+      position: absolute;
+      top: -10px; }
+    .icon-drag[type="pregnancy"]:before, .shape[type="pregnancy"]:before {
+      content: attr(text);
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      padding: .5rem;
+      z-index: 3; }
 
 .shape .date, .shape .name, .shape .text {
   position: absolute !important;
@@ -320,6 +334,9 @@ body {
   .down_ico:hover, .delete_ico:hover, .export_ico:hover, .import_ico:hover {
     color: #2969B0;
     text-decoration: underline; }
+
+.down_ico + input[type=file] {
+  display: none; }
 
 .content.toolbox h3 {
   height: auto;

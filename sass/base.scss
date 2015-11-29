@@ -125,8 +125,9 @@ body{
     text-shadow: 0 0 1px #323232;
     line-height: 50px;
     font-size: 1.5rem;
+    box-shadow: 0 0 13px 0px rgba(0,0,0,.33);
     
-    &.man{
+    &[type="woman"]{
         content: attr(text);
         display: block;
         background: $man;
@@ -134,50 +135,60 @@ body{
         @include border-radius(50%);
         
         &.studied{
-            background: white;
-            border: solid thin #323232;
             
-            &:after{
-                width: 80%;
-                height: 80%;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border: solid thin #323232;
-                content: '';
-                @include border-radius(50%);
-            }
         }
     }
     
-    &.woman{
+    &[type="woman_studied"]{
+        content: attr(text);
+        display: block;
+        padding: .5rem;
+        background: $man;
+        @include border-radius(50%);
+            
+        &:after{
+            width: 75%;
+            height: 75%;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.85);
+            border: solid thin #111;
+            content: '';
+            @include border-radius(50%);
+        }
+    }
+    
+    &[type="man"]{
+        display: block;
+        background: $woman;
+        padding: .5rem;
+    }
+    
+    &[type="man_studied"]{
         display: block;
         background: $woman;
         padding: .5rem;
         
-        &.studied{
-            background: white;
-            border: solid thin #323232;
-            
-            &:after{
-                width: 80%;
-                height: 80%;
-                margin: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border: solid thin #323232;
-                content: '';
-            }
+        &:after{
+            width: 75%;
+            height: 75%;
+            margin: auto;
+            background: rgba(0,0,0,.85);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: solid thin #111;
+            content: '';
         }
     }
     
-    &.lesbian{
+    &[type="lesbian"]{
         display: block;
         background: $woman;
         padding: .5rem;
@@ -196,7 +207,7 @@ body{
         
     }
     
-    &.homosex{
+    &[type="homosex"]{
         display: block;
         background: $man;
         padding: .5rem;
@@ -214,7 +225,9 @@ body{
         
     }
 
-    &.pregnancy{
+    &[type="pregnancy"]{
+        box-shadow: none;
+        
         &:after{
             box-sizing: border-box;
             content: '';
@@ -222,7 +235,7 @@ body{
             display: block;
             height: 100%;
             border-color: transparent transparent $woman transparent;
-            position: relative;
+            position: absolute;
             top: -10px;
         }
         
@@ -407,6 +420,12 @@ body{
     &:hover{
         color: #2969B0;
         text-decoration: underline;
+    }
+}
+
+.down_ico{
+    + input[type=file]{
+        display: none;
     }
 }
 

@@ -418,27 +418,10 @@ jsPlumb.ready(function(e){
 		drop: function(e,ui){
 			droppedElement = ui.helper.clone();
             
-            $target = droppedElement.attr("data-target");
+            $target = droppedElement.attr("type");
         
             $(droppedElement).removeAttr("class");
-            
-            if($target == "man")
-                $(droppedElement).addClass("shape man");
-            else if($target == "woman")
-                $(droppedElement).addClass("shape woman");
-            else if($target == "lesbian")
-                $(droppedElement).addClass("shape lesbian");
-            else if($target == "homosex")
-                $(droppedElement).addClass("shape homosex");
-            else if($target == "pregnancy")
-                $(droppedElement).addClass("shape pregnancy");
-            else if($target == "woman studied")
-                $(droppedElement).addClass("shape woman studied");
-            else if($target == "man studied")
-                $(droppedElement).addClass("shape man studied");
-            else
-                $(droppedElement).addClass("shape");
-            
+             $(droppedElement).addClass("shape");
 			
 			$(droppedElement).append("<span class='age'></span>");
 			$(droppedElement).append("<span class='date'></span>");
