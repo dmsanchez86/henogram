@@ -23,7 +23,8 @@
                 });
                 elem.html(o.html);
                 elem.attr({
-                    'class': 'component window shape woman'
+                    'class': 'component window shape',
+                    'type': o.type
                 });
                 $(options.containerSelector).append(elem);
             } else {
@@ -94,6 +95,9 @@
             var id = $elem.attr('id');
             blocks.push({
                 id: $elem.attr('id'),
+                data_type: $elem.attr('type'),
+                type: $elem.attr('type'),
+                attr: $elem.attr('type'),
                 left: parseInt($elem.css("left"), 10),
                 top: parseInt($elem.css("top"), 10),
                 width: parseInt($elem.css("width"), 10),

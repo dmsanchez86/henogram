@@ -39,7 +39,6 @@ var mxm = setInterval(function(){
         
         }        
     }catch(e){
-       console.warn("Assing Error"); 
     }
 
 }, 100);
@@ -230,19 +229,17 @@ jsPlumb.ready(function(e){
     });
 
     instance = jsPlumb.getInstance({
-	    DragOptions: { cursor: 'pointer', zIndex: 2000 },
+	    DragOptions: { cursor: 'pointer', zIndex: 100 },
 	    PaintStyle: { strokeStyle: '#666' },
 	    EndpointHoverStyle: { fillStyle: "orange" },
 	    HoverPaintStyle: { strokeStyle: "orange" },
-	    EndpointStyle: { width: 5, height: 5},
+	    EndpointStyle: { width: 2, height: 2},
 	    endpoint:"Rectangle",
 	    Anchors: ["TopCenter", "TopCenter"],
 	    Container: "#canvas",
 	    connector:"Straight",
 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
 	});
-	
-	console.log(instance);
 
     // Evento que elimina el conector
     instance.bind("dblclick", function(conn) {
@@ -264,12 +261,10 @@ jsPlumb.ready(function(e){
         hoverClass: "dropHover",
         activeClass: "dragActive"
     };
-    
     var exampleColor = "#00f";
     
+    // Points
     var exampleEndpoint = {
-       //connector:[ "TriangleWave", { spring:true, stub:[ 20, 20 ] } ],
-       // endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
         paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
         isSource: true,
         EndpointStyle: { width: 2, height: 2},
@@ -287,9 +282,7 @@ jsPlumb.ready(function(e){
         isTarget: true,
         dropOptions: exampleDropOptions,
         anchor:"LeftMiddle",
-        isSource: true,
-        maxConnections: 10,
-        isTarget: true
+        maxConnections: 10
     };
     var exampleEndpoint2 = {
         paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
@@ -306,13 +299,7 @@ jsPlumb.ready(function(e){
             lineWidth: 1.3,
             strokeStyle: exampleColor,
         },
-        /*connectorOverlays:[ 
-            [ "Arrow", { width:25, length:25, location:1, id:"arrow" } ],
-        ]*/
         isTarget: true,
-        // beforeDrop: function (params) {
-        //     return confirm("Vincular " + params.sourceId + " to " + params.targetId + "?");
-        // },
         dropOptions: exampleDropOptions,
         anchor:"RightMiddle",
         maxConnections: 10
@@ -333,9 +320,6 @@ jsPlumb.ready(function(e){
             strokeStyle: exampleColor,
         },
         isTarget: true,
-        // beforeDrop: function (params) {
-        //     return confirm("Vincular " + params.sourceId + " to " + params.targetId + "?");
-        // },
         dropOptions: exampleDropOptions,
         anchor:"TopCenter",
         maxConnections: 10
@@ -356,9 +340,6 @@ jsPlumb.ready(function(e){
             strokeStyle: exampleColor,
         },
         isTarget: true,
-        // beforeDrop: function (params) {
-        //     return confirm("Vincular " + params.sourceId + " to " + params.targetId + "?");
-        // },
         dropOptions: exampleDropOptions,
         anchor:"BottomCenter",
         maxConnections: 10
@@ -595,6 +576,8 @@ function handleFileSelect(evt) {
             try {
                 var compila = JSON.parse( e.target.result );
                 console.log(compila);
+                var items = compila.blocks;
+                
                 instance.reset();
                 $("#canvas").empty();
                 jsPlumb.load({
@@ -614,6 +597,7 @@ function handleFileSelect(evt) {
     }
 }
 
+// Evento cuando se carga un archivo
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
 function save_diagram(){

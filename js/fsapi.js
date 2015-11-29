@@ -15,7 +15,7 @@ var cFSExternal 	= 4;
 var cFSUpload 		= 5;
 var cFSPrint 		= 7;
 var cBASE64Encode 	= 8;
-cFSUpgrade			= 100;
+cFSUpgrade		= 100;
 
 var FireShotAPI =
 {
