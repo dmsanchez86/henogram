@@ -15,7 +15,6 @@ var mxm = setInterval(function(){
         for (var i = 0; i < All.length; i++) {
             var current = All.get(i);
             
-            
             if(_defaults.conector=="Distante"){
                 current.connector = "Fusionado";
                 current.connectorStyle.dashstyle = "2 2";
@@ -46,7 +45,6 @@ var mxm = setInterval(function(){
 }, 100);
 //Begin Socket
 //Begin Socket
-
 
 var listDiv = document.getElementById("list");
 
@@ -79,69 +77,6 @@ var updateConnections = function (conn, remove) {
 };
 
 var isLine = false;
-$(document).ready(function(){
-    
-   /* $("#canvas").click(function(e){
-        if(isLine == true){
-            var left = e.pageX;
-            var top = e.pageY;
-            var $pointone = "<div class='point' style='position:absolute;left:" + left + "px;top:" + top + "px;'>o</div>";
-            $("body").append($pointone);            
-        }else{
-            
-        }
-    });
-    
-    $(".visors").click(function(){
-        isLine = true;
-    });*/
-    
-    
-    if (typeof(FireShotAPI) != "undefined" && FireShotAPI.isAvailable()){
-        $(".alert_i").hide();
-        $(".alert_ok").show();
-    }else{
-        $(".alert_i").show();
-        $(".alert_ok").hide();
-    }
-    
-    $(".delete_ico").click(function(e){
-         e.preventDefault();
-         instance.reset();
-         $("#canvas").empty();
-    });
-    
-    
-    setTimeout(function(){ 
-        $(".icon-selector").eq(5).click(); 
-    }, 2000);
-    
-    if(localStorage.getItem("theme") != null)
-        $("body").addClass(localStorage.getItem("theme"));
-    
-    setTimeout(function(){
-        $( "#settings_path" ).dialog({ autoOpen: false });
-        $( "#settings_item" ).dialog({ autoOpen: false });
-    }, 1000);
-    
-   setInterval(function(){
-        $( "svg path" ).unbind('dblclick').dblclick(function() {
-          $( "#settings_path" ).dialog( "open" );
-          functions_path($(this));
-        });
-    },1000);
-    
-    function functions_path(path){  
-	    
-	    $('#txt_size_path').unbind('change').change(function(){
-	        path.css('stroke-width', $(this).val()+"px");
-	    });
-	    
-	    $('#txt_color_path').unbind('change').change(function(){
-	        path.css('stroke', "#" + $(this).val());
-	    });
-	}
-});
 
 jsPlumb.ready(function(e){
     
@@ -149,6 +84,11 @@ jsPlumb.ready(function(e){
     setTimeout(function(){ $('.loader').addClass('closed'); },1000);
     setTimeout(function(){ $('.loader').css('z-index','-1'); },1500);
     
+    // Cargo el tema que habia elegido previamente el usuario
+    if(localStorage.getItem("theme") != null)
+        $("body").addClass(localStorage.getItem("theme"));
+    
+    // Si recargo la pagina y quiere recuperar lo que estaba haciendo
     if(localStorage.getItem('autoload') != null){
         //Clear jsPlumb memory of connections/connectors & endpoints
         //sjsPlumb.reset();debugger
@@ -167,34 +107,59 @@ jsPlumb.ready(function(e){
         });*/
     }
     
+    // Llamo la funcion que permite cambiar el tema
     theme_selector();
     
+    // Evento que abre el contenedor para dibujar la linea
     $('.draw_line').unbind('click').click(function(){
         $('.overlay').toggleClass('open');
     });
     
+    // Evento que cierra el contenedor para dibujar la linea
     $('.close_overlay').unbind('click').click(function(){
-        $('.overlay').removeClass('open');
-        
+        $('.overlay').removeClass('open'); 
     });
    
-   $(".export_ico").unbind('click').click(function(e){
+    // Evento que exporta el archivo aun formato .json
+    $(".export_ico").unbind('click').click(function(e){
         e.preventDefault();
-
+        
+        // Si el contenedor tiene elementos
         if( $('#canvas').children().length > 2 ){
             
             var filename = "";
-            var export_ = prompt("Porfavor introduzca un nombre de archivo ", "Exportar");
+            var export_ = prompt("Nombre del archivo ", "diagram");
             
-            if (export_ != null) {
+            if (export_ != null) 
                 filename = export_;
-            }else{
-                filename = "exportar";
-            }
+            else
+                filename = "diagram";
 
             const MIME_TYPE = 'text/plain';
-            var obj = JSON.stringify( jsPlumb.save({selector:".shape"}) );
-            var bb = new Blob([ obj ], {type: MIME_TYPE});
+            
+            var Objs = [];
+            
+            $('.shape').each(function(i,e) {
+                var element = $(e);
+                
+                Objs.push({
+                    id: element.attr('id'), 
+                    html: element.html(),
+                    left: element.css('left'),
+                    top: element.css('top'),
+                    width: element.css('width'),
+                    height: element.css('height'),
+                    attrs: element.attr('type')
+                });
+            });
+            
+            console.log(Objs);
+            
+            var obj = JSON.stringify( jsPlumb.save({
+                selector: '.shape'
+            }) );
+            
+            var bb = new Blob([ obj ], { type: MIME_TYPE });
         
             var a = $(".descargar_");
                 a.attr("download", filename + ".json");
@@ -223,18 +188,21 @@ jsPlumb.ready(function(e){
            e.preventDefault();
        }*/
    });
-   
-   $(".import_ico").unbind('click').click(function(e){
+    
+    // Evento que exporta el archivo
+    $(".import_ico").unbind('click').click(function(e){
         e.preventDefault();
         $("#files").click();
-   });
+    });
    
-   $(".delete_icon").click(function(e){
+    // Evento que limpia el contenedor
+    $(".delete_icon").click(function(e){
        e.preventDefault();
        instance.remove();
        $('.jtk-demo-main').empty();
-   });
+    });
    
+    // Evento que selecciona el tipo de conector
     $(".icon-selector").unbind("click").click(function(){
         $(".icon-selector").removeClass("selected");
         $(this).toggleClass("selected");
@@ -256,6 +224,7 @@ jsPlumb.ready(function(e){
         
     });
     
+    // Evento que vuelve los items en acordion
     $( ".conectors" ).accordion({
       heightStyle: "content"
     });
@@ -268,12 +237,15 @@ jsPlumb.ready(function(e){
 	    EndpointStyle: { width: 5, height: 5},
 	    endpoint:"Rectangle",
 	    Anchors: ["TopCenter", "TopCenter"],
-	    Container: "#dropArea",
+	    Container: "#canvas",
 	    connector:"Straight",
 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
 	});
+	
+	console.log(instance);
 
-   instance.bind("dblclick", function(conn) {
+    // Evento que elimina el conector
+    instance.bind("dblclick", function(conn) {
        var $_conection = conn;
         
         $( "#settings_path" ).dialog( "open" );
@@ -285,23 +257,13 @@ jsPlumb.ready(function(e){
 	    
    });
 
-	instance.setContainer($("#dropArea"));
-	
-	$(".icon-drag").draggable({
-		helper: 'clone',
-		appendTo: 'body',
-    	scroll: false,
-		cursor: 'move',
-		tolerance: 'fit',
-		revert: true
-	});
+	instance.setContainer($("#canvas"));
 
     var exampleDropOptions = {
         tolerance: "touch",
         hoverClass: "dropHover",
         activeClass: "dragActive"
     };
-    
     
     var exampleColor = "#00f";
     
@@ -408,73 +370,110 @@ jsPlumb.ready(function(e){
             [0.8, 1, 0, 1],
             [0.8, 1, 0, 1],
     ],
+    
     maxConnectionsCallback = function (info) {
         alert("Cannot drop connection " + info.connection.id + " : maxConnections has been reached on Endpoint " + info.endpoint.id);
     };
 	
+	// Evento del droppable
 	$("#canvas").droppable({
 		accept: '.icon-drag',
 		containment: 'canvas',
-		drop: function(e,ui){
-			droppedElement = ui.helper.clone();
+		drop: function(e,ui){ // Evento que me lona un item en el canvas
+			var droppedElement = ui.helper.clone();
             
-            $target = droppedElement.attr("type");
+            var $target = droppedElement.attr("type");
         
             $(droppedElement).removeAttr("class");
-             $(droppedElement).addClass("shape");
+            $(droppedElement).addClass("shape");
 			
+			// Añado los items que me permitiran registrar la edad, la fecha etc
 			$(droppedElement).append("<span class='age'></span>");
 			$(droppedElement).append("<span class='date'></span>");
 			$(droppedElement).append("<span class='name'></span>");
 			$(droppedElement).append("<span class='text'></span>");
 			$(droppedElement).append("<button type='button' style='display: none'></button>");
 			
+			// agrego el item al canvas con su posicion
 			droppedElement.appendTo("#canvas").css({
-			    "top": (e.pageY) -(parseInt($(".all").css("margin-top")) + 50 ) +"px",
+			    "top": (e.pageY) - (parseInt($(".all").css("margin-top")) + 50 ) +"px",
 			    "left": (e.pageX) - ($(".content.toolbox.row").width() + 40) +"px",
 			});
-			
-            /*var _top = anchors[0];
-            var _left = anchors[1];
-            var _bottom = anchors[2];
-            var _right = anchors[3];*/
             
+            // Vuelvo draggable el item
 			instance.draggable($(droppedElement),  {
                containment:true
             });
             
-            
+            // Le añado el evento resize para cambiarle el tamaño
             $(droppedElement).resizable({ 
                 handles: 'se, sw, nw',
                 resize : function(event, ui) {     
                     instance.repaintEverything();
                 },
-                maxWidth:110, // gets set once, but doesn't update! WHY?
+                maxWidth:110,
                 minWidth:65,
                 minHeight:65,
                 maxHeight:110
             });
 
+            // Le añado los 4 puntos para los conetores
 			instance.addEndpoint($(droppedElement), exampleEndpoint);
 			instance.addEndpoint($(droppedElement), exampleEndpoint2);
 			instance.addEndpoint($(droppedElement), exampleEndpoint3);
 			instance.addEndpoint($(droppedElement), exampleEndpoint4);
-            
 		
+		    // llamo el evento que me permite hacer click en el item  
 			event_shape();
 		}
 	});
 	
+	// Evento del Draggable
+	$(".icon-drag").draggable({
+		helper: 'clone',
+		appendTo: 'body',
+    	scroll: false,
+		cursor: 'move',
+		tolerance: 'fit',
+		revert: true,
+		grid: [ 20, 20 ]
+	});
+	
 	var timeout = null;
 	
+	// Evento que limpia el contenedor principal
+    $(".delete_ico").click(function(e){
+         e.preventDefault();
+         instance.reset();
+         $("#canvas").empty();
+    });
+    
+    // Selecciono el item para los conectores
+    setTimeout(function(){ 
+        $(".icon-selector").eq(0).click(); 
+    }, 1000);
+    
+    // Funciones a los popups de configuración
+    setTimeout(function(){
+        $( "#settings_path" ).dialog({ autoOpen: false });
+        $( "#settings_item" ).dialog({ autoOpen: false });
+    }, 1000);
+    
+    // Eventos de los conectores
+    setInterval(function(){
+        $( "svg path" ).unbind('dblclick').dblclick(function() {
+            $( "#settings_path" ).dialog( "open" );
+            functions_path($(this));
+        });
+    },1000);
+	
+	// Evento que abre el popup de la configuración de cada item haciendo doble clik
 	function event_shape(){
 	    $(".shape").unbind("dblclick").dblclick(function(){
 	        
-            $("#settings_item").dialog( "open" );debugger
             delete_shape($(this));
             change_background($(this));
             text_shape($(this));
-            resize_obj($(this));
             die_obj($(this));
             
             if ($(this).hasClass("ind_abortion")){
@@ -485,6 +484,7 @@ jsPlumb.ready(function(e){
 	            $("#chb_ind_a,#chb_esp_a").prop("checked", false);
 	            $("#chb_none + label").hide();
             }
+            
             if(
                 $(this).find('.date').text() != "" || 
                 $(this).find('.age').text() != "" ||
@@ -500,9 +500,12 @@ jsPlumb.ready(function(e){
                 $("#txt_age, #txt_date, #txt_name, #txt_text").val("");
                 $("#txt_color_text").val($(this).css('background-color'));
             }
+            
+            $("#settings_item").dialog( "open" );
         });
 	}
 	
+	// Evento que le pone la edad, el nombre, el texto, la fecha al item
 	function text_shape(obj){
 	    $("#txt_age").unbind('change').change(function(e){
             if(isNaN($(this).val()))
@@ -518,8 +521,13 @@ jsPlumb.ready(function(e){
 	    $("#txt_text").unbind('keyup').keyup(function(e){
             obj.find('.text').text( $(this).val());
 	    });
+	    
+	    $("#txt_date").unbind("change").change(function(){
+	        obj.find('.date').text($("#txt_date").val());
+	    });
 	}
 	
+	// Evento que borra un item con sus conectores
 	function delete_shape(obj){
 	    $("#btn_delete").unbind('click').click(function(){
 	        obj.next().remove();
@@ -531,16 +539,14 @@ jsPlumb.ready(function(e){
 	    });
 	}
 	
+	// Evento que cambia el color del item
 	function change_background(obj){
 	    $("#txt_color_text").unbind("change").change(function(){
 	        obj.css("background", "#" + $(this).val());
 	    });
-	    
-	    $("#txt_date").unbind("change").change(function(){
-	        obj.find('.date').text($("#txt_date").val());
-	    });
 	}
 	
+	// Evento que le agrega los tipos de aborto al item
 	function die_obj(obj){
 	    $("#chb_ind_a").unbind("change").change(function(){
 	        obj.removeClass("ind_abortion").toggleClass("esp_abortion");
@@ -558,44 +564,26 @@ jsPlumb.ready(function(e){
 	    });
 	}
 	
-	function resize_obj(obj){
-	    $("#txt_size_width").unbind('keyup').keyup(function(e){
-	        if($(this).val() == ""){
-	            obj.css("width", "65px");
-	            obj.css("height", "62px");
-	        }else if($(this).val().length < 4){
-	            if(isNaN($(this).val()))
-	                $(this).val("");
-	            else
-	                obj.css("width", $(this).val() + "px");
-	        }else{
-                $(this).val("");
-	        }
-	    });
-	    
-	    $("#txt_size_height").unbind('keyup').keyup(function(e){
-	        if($(this).val() == ""){
-	            obj.css("width", "65px");
-	            obj.css("height", "62px");
-	        }else if($(this).val().length < 4){
-	            if(isNaN($(this).val()))
-	                $(this).val("");
-	            else
-	                obj.css("height", $(this).val()+ "px");
-	        }else{
-                $(this).val("");
-	        }
-	    });
-	}
-	
+	// Evento que cambia el tema de la página
 	function theme_selector(){
 	    $('.settings li').unbind("click").click(function(){
 	        localStorage.setItem("theme", $(this).attr("theme"));
 	        $('body').removeClass("theme_2 theme_3 theme_4").addClass($(this).attr("theme"));
 	    });
 	}
+    
+    // Funcion de los conectores para cambiar el tamaño y color
+    function functions_path(path){  
+	    
+	    $('#txt_size_path').unbind('change').change(function(){
+	        path.css('stroke-width', $(this).val()+"px");
+	    });
+	    
+	    $('#txt_color_path').unbind('change').change(function(){
+	        path.css('stroke', "#" + $(this).val());
+	    });
+	}
 });
-
 
 function handleFileSelect(evt) {
     var files = evt.target.files;
@@ -604,21 +592,21 @@ function handleFileSelect(evt) {
       var reader = new FileReader();
       reader.onload = (function(theFile) {
         return function(e) {
-            //try {
+            try {
                 var compila = JSON.parse( e.target.result );
-                
+                console.log(compila);
                 instance.reset();
                 $("#canvas").empty();
                 jsPlumb.load({
-                               savedObj:compila,
-                               containerSelector:"#canvas"
-                              }
-                            );
+                   savedObj: compila,
+                   containerSelector: "#canvas"
+                  }
+                );
 
-            // catch (e) {
-              //  alert("El archivo que desea importar no es valido");
-               // return false;
-            //}
+            }catch (e) {
+                alert("El archivo que desea importar no es valido! El archivo debe ser con extensión .json");
+                return false;
+            }
 
         };
       })(f);
@@ -627,3 +615,42 @@ function handleFileSelect(evt) {
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+function save_diagram(){
+    var nodes = [];
+
+    var numberOfElements = $('.shape').length;
+    
+    $('.shape').each(function(i,elem){
+        $elem = $(elem);
+    
+        var endpoints = jsPlumb.getEndpoints($elem.attr('id'));
+        
+        nodes.push({
+            blockId: $elem.attr('id'),
+            attrs: $elem.attr('type'),
+            nodetype: $elem.attr('data-nodetype'),
+            positionX: parseInt($elem.css("left"), 10),
+            positionY: parseInt($elem.css("top"), 10)
+        });
+        
+        var connections = [];
+        
+        $.each(jsPlumb.getConnections(), function (idx, connection) {
+            connections.push({
+                connectionId: connection.id,
+                pageSourceId: connection.sourceId,
+                pageTargetId: connection.targetId
+            });
+        });
+    
+        var flowChart = {};
+        flowChart.nodes = nodes;
+        flowChart.connections = connections;
+        flowChart.numberOfElements = numberOfElements;
+    
+        var flowChartJson = JSON.stringify(flowChart);
+        
+        console.log(flowChartJson);
+    });
+}
