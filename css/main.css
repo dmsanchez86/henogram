@@ -437,10 +437,18 @@ path {
   -o-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease; }
   .overlay.open {
-    z-index: 111111;
+    z-index: 999;
     opacity: 1; }
     .overlay.open .close_overlay {
       display: block !important; }
+    .overlay.open:after {
+      position: absolute;
+      margin: auto;
+      left: 15px;
+      bottom: 15px;
+      content: "Marque el punto " attr(step);
+      color: white;
+      font-weight: bold; }
   .overlay .close_overlay {
     position: absolute;
     top: 1%;
@@ -487,5 +495,27 @@ path {
 
 .ui-accordion .ui-accordion-content:last-child > div {
   margin: .5rem 0; }
+
+.wave {
+  background-image: -webkit-radial-gradient(center, #fff, rgba(255, 255, 255, 0.6));
+  background-image: radial-gradient(center, #fff, rgba(255, 255, 255, 0.6));
+  border: 5px solid #aaa;
+  box-shadow: 0 0 5px 2px #323232;
+  box-sizing: border-box;
+  border-radius: 50%;
+  height: 100px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  transform: scale(0);
+  transition: transform .2s ease-in-out;
+  width: 100px;
+  z-index: 1000; }
+  .wave.effect {
+    opacity: 1;
+    transform: scale(0.15); }
+
+.line {
+  cursor: move; }
 
 /*# sourceMappingURL=main.css.map */

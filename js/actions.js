@@ -1,5 +1,10 @@
 var ssi = 0;
 var instance = null;
+var step = 1;
+var x1 = null;
+var x2 = null;
+var y1 = null;
+var y2 = null;
 
 var _defaults = {
   conector : "Bezier"
@@ -111,12 +116,16 @@ jsPlumb.ready(function(e){
     
     // Evento que abre el contenedor para dibujar la linea
     $('.draw_line').unbind('click').click(function(){
-        $('.overlay').toggleClass('open');
+        $('.overlay').addClass('open');
+        
+        document_click();
     });
     
     // Evento que cierra el contenedor para dibujar la linea
     $('.close_overlay').unbind('click').click(function(){
-        $('.overlay').removeClass('open'); 
+        step = 1;
+        $('.wave').remove();
+        $('.overlay').removeClass('open').attr('step', step);
     });
    
     // Evento que exporta el archivo aun formato .json
@@ -872,4 +881,58 @@ function get_items(){
 		instance.addEndpoint($e, exampleEndpoint3);
 		instance.addEndpoint($e, exampleEndpoint4);
     });
+}
+
+function document_click(){
+    var body = document.querySelector('.body');
+    var canvas = document.querySelector('#canvas');
+    var overlay = document.querySelector('.overlay');
+    
+    canvas.onclick = function(evt){
+        
+        if($('.overlay').hasClass('open')){
+            
+            var position_X = evt.clientX - 50;
+            var position_Y = evt.clientY - 50;
+            
+            if(step == 1){
+                x1 = position_X;
+                y1 = position_Y;
+            }
+            
+            step++;
+            $('.overlay').attr('step', step);
+            
+            var wave = document.createElement('div');
+            
+            wave.style.left = position_X + 'px';
+            wave.style.top = position_Y + 'px';
+            wave.className = 'wave';
+            
+            body.appendChild(wave);
+            
+            setTimeout(function(){
+                wave.className = 'wave effect';
+                // setTimeout(function(){
+                //     body.removeChild(wave);
+                // },600);
+            },10);
+            
+            if(step > 2){
+                x2 = position_X;
+                y2 = position_Y;
+                step = 1;
+                $('.overlay').removeClass('open').attr('step', step);
+                $('#canvas').line((x1 - 233),y1,(x2 - 233),y2, {color:"#323232", stroke:3, zindex:10,cursor:'pointer'}, function(e){
+                    var lines = $('#canvas > div:not(.shape,.overlay,.jsplumb-endpoint)');
+                    lines.addClass('line');
+                    lines.draggable();
+                });
+                $('.wave').remove();
+            }
+        }else{
+            return;
+        }
+        
+    };
 }
