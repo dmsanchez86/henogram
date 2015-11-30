@@ -346,10 +346,10 @@ jsPlumb.ready(function(e){
     };
 
     var anchors = [
-            [0.8, 1, 0, 1],
-            [0.8, 1, 0, 1],
-            [0.8, 1, 0, 1],
-            [0.8, 1, 0, 1],
+            [0.4, 0.5, 0, 0.5],
+            [0.4, 0.5, 0, 0.5],
+            [0.4, 0.5, 0, 0.5],
+            [0.4, 0.5, 0, 0.5],
     ],
     
     maxConnectionsCallback = function (info) {
@@ -575,16 +575,18 @@ function handleFileSelect(evt) {
         return function(e) {
             try {
                 var compila = JSON.parse( e.target.result );
-                console.log(compila);
-                var items = compila.blocks;
                 
                 instance.reset();
                 $("#canvas").empty();
+                
                 jsPlumb.load({
                    savedObj: compila,
                    containerSelector: "#canvas"
                   }
                 );
+                
+                event_shape();
+                get_items();
 
             }catch (e) {
                 alert("El archivo que desea importar no es valido! El archivo debe ser con extensión .json");
@@ -592,7 +594,7 @@ function handleFileSelect(evt) {
             }
 
         };
-      })(f);
+    })(f);
       reader.readAsText(f);
     }
 }
@@ -636,5 +638,238 @@ function save_diagram(){
         var flowChartJson = JSON.stringify(flowChart);
         
         console.log(flowChartJson);
+    });
+}
+
+// Evento que abre el popup de la configuración de cada item haciendo doble clik
+function event_shape(){
+    $(".shape").unbind("dblclick").dblclick(function(){
+        console.log($(this));
+        delete_shape($(this));
+        change_background($(this));
+        text_shape($(this));
+        die_obj($(this));
+        
+        if ($(this).hasClass("ind_abortion")){
+            $("#chb_ind_a").prop("checked", true);
+        }else if($(this).hasClass("esp_abortion")){
+            $("#chb_esp_a").prop("checked", true);
+        }else{
+            $("#chb_ind_a,#chb_esp_a").prop("checked", false);
+            $("#chb_none + label").hide();
+        }
+        
+        if(
+            $(this).find('.date').text() != "" || 
+            $(this).find('.age').text() != "" ||
+            $(this).find('.text').text() != "" ||
+            $(this).find('.name').text() != ""){
+            $("#txt_age").val($(this).find('.age').text()); 
+            $("#txt_date").val($(this).find('.date').text());
+            $("#txt_text").val($(this).find('.text').text());
+            $("#txt_name").val($(this).find('.name').text());
+            $("#txt_color_text").val($(this).css('background-color'));
+        }else{
+            $("#chb_die").prop("checked", false);
+            $("#txt_age, #txt_date, #txt_name, #txt_text").val("");
+            $("#txt_color_text").val($(this).css('background-color'));
+        }
+        
+        $("#settings_item").dialog( "open" );
+    });
+}
+
+// Evento que le pone la edad, el nombre, el texto, la fecha al item
+function text_shape(obj){
+    $("#txt_age").unbind('change').change(function(e){
+        if(isNaN($(this).val()))
+            $("#txt_age").val("");
+        else
+            obj.find('.age').text( $(this).val());
+    });
+    
+    $("#txt_name").unbind('keyup').keyup(function(e){
+        obj.find('.name').text( $(this).val());
+    });
+    
+    $("#txt_text").unbind('keyup').keyup(function(e){
+        obj.find('.text').text( $(this).val());
+    });
+    
+    $("#txt_date").unbind("change").change(function(){
+        obj.find('.date').text($("#txt_date").val());
+    });
+}
+
+// Evento que borra un item con sus conectores
+function delete_shape(obj){debugger
+    console.log(obj);
+    $("#btn_delete").unbind('click').click(function(){
+        obj.remove();
+        $("#settings_item").dialog( "close" );
+    });
+}
+
+// Evento que cambia el color del item
+function change_background(obj){
+    $("#txt_color_text").unbind("change").change(function(){
+        obj.css("background", "#" + $(this).val());
+    });
+}
+
+// Evento que le agrega los tipos de aborto al item
+function die_obj(obj){
+    $("#chb_ind_a").unbind("change").change(function(){
+        obj.removeClass("ind_abortion").toggleClass("esp_abortion");
+        $("#chb_none + label").show();
+    });
+    
+    $("#chb_esp_a").unbind("change").change(function(){
+        obj.removeClass("esp_abortion").toggleClass("ind_abortion");
+        $("#chb_none + label").show();
+    });
+    
+    $("#chb_none").unbind("change").change(function(){
+        obj.removeClass("esp_abortion ind_abortion");
+        $("#chb_none + label").hide();
+    });
+}
+
+// Evento que recorre todos los items
+function get_items(){
+    debugger
+    instance = jsPlumb.getInstance({
+	    DragOptions: { cursor: 'pointer', zIndex: 100 },
+	    PaintStyle: { strokeStyle: '#666' },
+	    EndpointHoverStyle: { fillStyle: "orange" },
+	    HoverPaintStyle: { strokeStyle: "orange" },
+	    EndpointStyle: { width: 2, height: 2},
+	    endpoint:"Rectangle",
+	    Anchors: ["TopCenter", "TopCenter"],
+	    Container: "#canvas",
+	    connector:"Straight",
+	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
+	});
+
+    console.log(instance);
+
+    // Evento que elimina el conector
+    instance.bind("dblclick", function(conn) {
+       var $_conection = conn;
+        
+        $( "#settings_path" ).dialog( "open" );
+        
+        $('#btn_delete_path').unbind('click').click(function(){
+            jsPlumb.detach($_conection);
+	        $( "#settings_path" ).dialog( "close" );
+	    });
+	    
+   });
+
+	instance.setContainer($("#canvas"));
+
+    var exampleDropOptions = {
+        tolerance: "touch",
+        hoverClass: "dropHover",
+        activeClass: "dragActive"
+    };
+    var exampleColor = "#00f";
+    
+    // Points
+    var exampleEndpoint = {
+        paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
+        isSource: true,
+        EndpointStyle: { width: 2, height: 2},
+        reattach: true,
+        scope: "blue",
+        connectorStyle: {
+            gradient: {stops: [
+                [0, exampleColor],
+                [0.5, "#09098e"],
+                [1, exampleColor]
+            ]},
+            lineWidth: 1.3,
+            strokeStyle: exampleColor,
+        },
+        isTarget: true,
+        dropOptions: exampleDropOptions,
+        anchor:"LeftMiddle",
+        maxConnections: 10
+    };
+    var exampleEndpoint2 = {
+        paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
+        isSource: true,
+        EndpointStyle: { width: 2, height: 2},
+        reattach: true,
+        scope: "blue",
+        connectorStyle: {
+            gradient: {stops: [
+                [0, exampleColor],
+                [0.5, "#09098e"],
+                [1, exampleColor]
+            ]},
+            lineWidth: 1.3,
+            strokeStyle: exampleColor,
+        },
+        isTarget: true,
+        dropOptions: exampleDropOptions,
+        anchor:"RightMiddle",
+        maxConnections: 10
+    };
+    var exampleEndpoint3 = {
+        paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
+        isSource: true,
+        EndpointStyle: { width: 5, height: 5},
+        reattach: true,
+        scope: "blue",
+        connectorStyle: {
+            gradient: {stops: [
+                [0, exampleColor],
+                [0.5, "#09098e"],
+                [1, exampleColor]
+            ]},
+            lineWidth: 1.3,
+            strokeStyle: exampleColor,
+        },
+        isTarget: true,
+        dropOptions: exampleDropOptions,
+        anchor:"TopCenter",
+        maxConnections: 10
+    };
+    var exampleEndpoint4 = {
+        paintStyle: { width: 10, height: 8, fillStyle: exampleColor },
+        EndpointStyle: { width: 2, height: 2},
+        isSource: true,
+        reattach: true,
+        scope: "blue",
+        connectorStyle: {
+            gradient: {stops: [
+                [0, exampleColor],
+                [0.5, "#09098e"],
+                [1, exampleColor]
+            ]},
+            lineWidth: 1.3,
+            strokeStyle: exampleColor,
+        },
+        isTarget: true,
+        dropOptions: exampleDropOptions,
+        anchor:"BottomCenter",
+        maxConnections: 10
+    };
+    
+    
+    $('.shape').each(function(i,e){
+        var $e = $(e);
+        
+        // Vuelvo draggable el item
+    	instance.draggable($e,  {
+           containment:true
+        });
+        
+        // Le añado los 4 puntos para los conetores
+		instance.addEndpoint($e, exampleEndpoint);
+		instance.addEndpoint($e, exampleEndpoint2);
+		instance.addEndpoint($e, exampleEndpoint3);
+		instance.addEndpoint($e, exampleEndpoint4);
     });
 }

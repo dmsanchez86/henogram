@@ -1,14 +1,15 @@
 
 (function(jsPlumbInstance) {
-    jsPlumbInstance.load = function(options,plumbInstance)
-    {
-        if(!options || !options.savedObj || !options.containerSelector){
+    jsPlumbInstance.load = function(options,plumbInstance){
+        
+        if(!options || !options.savedObj || !options.containerSelector)
             return;
-        }
-        var conn=options.savedObj;
-        //plumbInstance = plumbInstance || jsPlumb;
+
+        var conn = options.savedObj;
         plumbInstance = instance;
         var blocks = conn.blocks;
+        
+        // Donde se agrega uno por uno los items del archivo
         for (var i = 0; i < blocks.length; i++) {
             var o = blocks[i];
             if ($("#" + o.id).length == 0) {
@@ -19,7 +20,8 @@
                     top: o.top,
                     width: o.width,
                     height: o.height,
-                    position: 'absolute'
+                    position: 'absolute',
+                    background: o.background
                 });
                 elem.html(o.html);
                 elem.attr({
@@ -38,16 +40,14 @@
         }
         var connections = conn.connections;
         for (var i = 0; i < connections.length; i++) {
-            //console.log(connections[i].endpoint);
 
             var connection1 = plumbInstance.connect({
                 source: connections[i].sourceId,
                 target: connections[i].targetId,
-                anchors: function()
-                {
+                anchors: function(){
                     var temp = [];
-                    connections[i].anchors.forEach(function(anc)
-                    {
+                    
+                    connections[i].anchors.forEach(function(anc){
                         if (anc.type) {
                             temp.push(anc.type);
                         }
@@ -69,35 +69,34 @@
                     cssClass: connections[i].labelClassName
                 }
             });
+            
             connections[i].overlays.forEach(function(overlay) {
                 connection1.addOverlay([overlay.type, overlay]);
             });
         }
         plumbInstance.draggable(plumbInstance.getSelector(options.savedObj.selector), {
-            drag: function() {
+            drag: function(e) {
             }
         });
     };
 
-
-    jsPlumbInstance.save = function(options,plumbInstance)
-    {
-        if(!options || !options.selector){
+    jsPlumbInstance.save = function(options,plumbInstance){
+        if(!options || !options.selector)
             return {};
-        }
+        
         plumbInstance = instance;
-        //plumbInstance = plumbInstance || jsPlumb;
+        
         var connection;
         connection = plumbInstance.getAllConnections();
         var blocks = [];
+        
         $(options.selector).each(function(idx, elem) {
             var $elem = $(elem);
             var id = $elem.attr('id');
             blocks.push({
                 id: $elem.attr('id'),
-                data_type: $elem.attr('type'),
                 type: $elem.attr('type'),
-                attr: $elem.attr('type'),
+                background: $elem.css("background"),
                 left: parseInt($elem.css("left"), 10),
                 top: parseInt($elem.css("top"), 10),
                 width: parseInt($elem.css("width"), 10),
@@ -105,13 +104,16 @@
                 html: $elem.html()
             });
         });
+        
         var connections = [];
+        
         for (var i = 0; i < connection.length; i++) {
             var id = connection[i].sourceId;
             var endpoints = plumbInstance.getEndpoints(connection[i].sourceId);
             var connector = connection[i].getConnector();
             var type = connector.type;
             var attrs = {};
+            
             switch (type) {
                 case "Bezier":
                     attrs["curviness"] = connector.getCurviness();
@@ -137,17 +139,14 @@
             var endpointArray = [];
             connection[i].endpoints.forEach(function(endpoint) {
                 var options = {};
-                if (endpoint.type == 'Image')
-                {
+                if (endpoint.type == 'Image'){
                     options.url = endpoint.canvas.src;
                     options.anchor = endpoint.anchor;
                     endpointArray.push([endpoint.type, options]);
-                } else
-                {
+                } else{
                     options.anchor = endpoint.anchor;
                     endpointArray.push([endpoint.type, options]);
                 }
-                console.log(options);
             });
 
             connections.push({
@@ -161,8 +160,7 @@
                 sourceEndpointUuid: connection[i].endpoints[0].getUuid(),
                 targetEndpointUuid: connection[i].endpoints[1].getUuid(),
                 paintStyle: connection[i].getPaintStyle(),
-                endpointStyle: function()
-                {
+                endpointStyle: function(){
                     var temp = [];
                     connection[i].endpoints.forEach(function(endpoint) {
                         temp.push(endpoint.getPaintStyle());
@@ -171,8 +169,7 @@
                 }(),
                 hoverPaintStyle: connection[i].getHoverPaintStyle(),
                 endpoint: endpointArray,
-                anchors: function()
-                {
+                anchors: function(){
                     var temp = [];
                     connection[i].endpoints.forEach(function(endpoint) {
                         var tempObj = {
@@ -189,18 +186,15 @@
                     return temp;
                 }(),
                 labelText: connection[i].getLabel(),
-                overlays: $.map(connection[i].getOverlays(), function(overlay) {
+                overlays: $.map(connection[i].getOverlays(), function(overlay){
                     var temp = new Array();
                     var obj = {};
                     for (var key in overlay) {
-                        if (typeof overlay[key] !== 'function' && typeof overlay[key] !== 'object' && typeof overlay[key] != 'undefined')
-                        {
+                        if (typeof overlay[key] !== 'function' && typeof overlay[key] !== 'object' && typeof overlay[key] != 'undefined'){
                             if (key == 'loc')
-                            {
                                 obj["location"] = overlay[key];
-                            } else {
+                            else 
                                 obj[key] = overlay[key];
-                            }
                         }
                     }
                     obj["cssClass"] = overlay.canvas.className;
@@ -213,5 +207,4 @@
         var obj = {selector:options.selector,connections: connections, blocks: blocks};
         return obj;
     };
-
 })(jsPlumb);
