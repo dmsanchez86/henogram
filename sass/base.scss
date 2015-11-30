@@ -116,7 +116,12 @@ body{
     }
 }
 
+.item-drag{
+    text-align: center!important;
+}
+
 .icon-drag, .shape{
+    z-index: 3;
     position: relative;
     color: white;
     text-align: center;
@@ -126,10 +131,10 @@ body{
     line-height: 50px;
     font-size: 1.5rem;
     box-shadow: 0 0 13px 0px rgba(0,0,0,.33);
+    display: inline-block;
     
     &[type="woman"]{
         content: attr(text);
-        display: block;
         background: $man;
         padding: .5rem;
         @include border-radius(50%);
@@ -141,7 +146,6 @@ body{
     
     &[type="woman_studied"]{
         content: attr(text);
-        display: block;
         padding: .5rem;
         background: $man;
         @include border-radius(50%);
@@ -163,13 +167,11 @@ body{
     }
     
     &[type="man"]{
-        display: block;
         background: $woman;
         padding: .5rem;
     }
     
     &[type="man_studied"]{
-        display: block;
         background: $woman;
         padding: .5rem;
         
@@ -189,7 +191,6 @@ body{
     }
     
     &[type="lesbian"]{
-        display: block;
         background: $woman;
         padding: .5rem;
         @include border-radius(50%);
@@ -208,7 +209,6 @@ body{
     }
     
     &[type="homosex"]{
-        display: block;
         background: $man;
         padding: .5rem;
         
@@ -254,6 +254,7 @@ body{
 }
 
 .shape{
+    
     .date, .name, .text{
         position: absolute!important;
         top: -35px!important;
@@ -488,6 +489,7 @@ body{
 
 circle{
     fill: rgba(110,110,110,.2);
+    z-index: 2;
     @include transition(all .2s ease);
     
     &:hover{
@@ -538,8 +540,13 @@ path{
             bottom: 15px;
             content: 'Marque el punto ' attr(step);
             color: white;
+            z-index: 0;
             font-weight: bold;
         }
+    }
+    
+    &.drag{
+        opacity: 1;
     }
     
     .close_overlay{
@@ -625,4 +632,29 @@ path{
 
 .line{
     cursor: move;
+}
+
+#canvas{
+    
+    &.drag{
+        
+        &:after{
+            position: absolute;
+            margin: auto;
+            top: 0;
+            content: '';
+            left: 0;
+            background: rgba(0,0,0,.1);
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            z-index: 0;
+        }
+    }
+    
+    &:after{
+        opacity: 0;
+        z-index: 3;
+        @include transition(all .5s ease);
+    }
 }

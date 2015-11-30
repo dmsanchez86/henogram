@@ -369,6 +369,7 @@ jsPlumb.ready(function(e){
 	$("#canvas").droppable({
 		accept: '.icon-drag',
 		containment: 'canvas',
+		activeClass: 'drag',
 		drop: function(e,ui){ // Evento que me lona un item en el canvas
 			var droppedElement = ui.helper.clone();
             
@@ -424,6 +425,27 @@ jsPlumb.ready(function(e){
 		appendTo: 'body',
     	scroll: false,
 		cursor: 'move',
+		drag: function(ui,e){
+		    var target = ui.target;
+		    var type = target.getAttribute('type');
+		    if(type == "pregnancy"){
+		        target.style.boxShadow    = "0";
+		    }else{
+		        target.style.boxShadow    = "0 0 20px 0px rgba(0, 0, 0, 0.83)";
+		    }
+		},
+		stop: function(ui,e){
+		    var target = ui.target;
+		    
+		    var type = target.getAttribute('type');
+		    
+		    if(type == "pregnancy"){
+		        target.style.boxShadow    = "0";
+		    }else{
+		        target.style.boxShadow    = "0 0 13px 0px rgba(0, 0, 0, 0.33)";
+		    }
+		    
+		},
 		tolerance: 'fit',
 		revert: true,
 		grid: [ 20, 20 ]
