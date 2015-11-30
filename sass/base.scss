@@ -118,6 +118,7 @@ body{
 
 .item-drag{
     text-align: center!important;
+    margin-bottom: .5rem;
 }
 
 .icon-drag, .shape{
@@ -251,6 +252,46 @@ body{
         }
     }
     
+    &[type="esp_abortion"]{
+        position: relative;
+        border: thin solid #302F2F;
+        
+        &:before{
+            background-image: url(../resources/shapes/die.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 9;
+            position: absolute;
+            width: 95%;
+            height: 95%;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+        }
+    }
+    
+    &[type="ind_abortion"]{
+        position: relative;
+        box-shadow: none;
+        
+        &:before{
+            position: absolute;
+            width: 95%;
+            height: 95%;
+            margin: auto;
+            background: #323232;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+            @include border-radius(50%);
+        }
+    }
+    
 }
 
 .shape{
@@ -285,44 +326,6 @@ body{
         bottom: -30px!important;
         right: -41px!important;
         margin: auto!important;
-    }
-    
-    &.ind_abortion{
-        position: relative;
-        
-        &:before{
-            background-image: url(../resources/shapes/die.png);
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: 9;
-            position: absolute;
-            width: 76%;
-            height: 76%;
-            margin: auto;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            content: '';
-        }
-    }
-    
-    &.esp_abortion{
-        position: relative;
-        
-        &:before{
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            margin: auto;
-            background: #323232;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            content: '';
-            @include border-radius(50%);
-        }
     }
 }
 

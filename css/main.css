@@ -76,7 +76,8 @@ body {
     transform: translatex(0%); }
 
 .item-drag {
-  text-align: center !important; }
+  text-align: center !important;
+  margin-bottom: .5rem; }
 
 .icon-drag, .shape {
   z-index: 3;
@@ -196,6 +197,43 @@ body {
       left: 0;
       padding: .5rem;
       z-index: 3; }
+  .icon-drag[type="esp_abortion"], .shape[type="esp_abortion"] {
+    position: relative;
+    border: thin solid #302F2F; }
+    .icon-drag[type="esp_abortion"]:before, .shape[type="esp_abortion"]:before {
+      background-image: url(../resources/shapes/die.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      z-index: 9;
+      position: absolute;
+      width: 95%;
+      height: 95%;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: ''; }
+  .icon-drag[type="ind_abortion"], .shape[type="ind_abortion"] {
+    position: relative;
+    box-shadow: none; }
+    .icon-drag[type="ind_abortion"]:before, .shape[type="ind_abortion"]:before {
+      position: absolute;
+      width: 95%;
+      height: 95%;
+      margin: auto;
+      background: #323232;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      content: '';
+      -webkit-border-radius: 50%;
+      -khtml-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%; }
 
 .shape .date, .shape .name, .shape .text {
   position: absolute !important;
@@ -219,41 +257,6 @@ body {
   bottom: -30px !important;
   right: -41px !important;
   margin: auto !important; }
-.shape.ind_abortion {
-  position: relative; }
-  .shape.ind_abortion:before {
-    background-image: url(../resources/shapes/die.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 9;
-    position: absolute;
-    width: 76%;
-    height: 76%;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: ''; }
-.shape.esp_abortion {
-  position: relative; }
-  .shape.esp_abortion:before {
-    position: absolute;
-    width: 80%;
-    height: 80%;
-    margin: auto;
-    background: #323232;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: '';
-    -webkit-border-radius: 50%;
-    -khtml-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%; }
 
 .size_content span {
   margin-right: 1rem; }

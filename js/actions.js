@@ -428,7 +428,7 @@ jsPlumb.ready(function(e){
 		drag: function(ui,e){
 		    var target = ui.target;
 		    var type = target.getAttribute('type');
-		    if(type == "pregnancy"){
+		    if(type == "pregnancy" || type == "ind_abortion"){
 		        target.style.boxShadow    = "0";
 		    }else{
 		        target.style.boxShadow    = "0 0 20px 0px rgba(0, 0, 0, 0.83)";
@@ -439,7 +439,7 @@ jsPlumb.ready(function(e){
 		    
 		    var type = target.getAttribute('type');
 		    
-		    if(type == "pregnancy"){
+		    if(type == "pregnancy" || type == "ind_abortion"){
 		        target.style.boxShadow    = "0";
 		    }else{
 		        target.style.boxShadow    = "0 0 13px 0px rgba(0, 0, 0, 0.33)";
