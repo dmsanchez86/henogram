@@ -137,14 +137,16 @@
                 <img class="icon-selector" type="Distante" src="resources/shapes/distante.png">
                 <h5>Enfocado en</h5>
                 <img class="icon-selector" type="Enfocado_En" src="resources/shapes/enfocado.png">
-                <h5>Fusionado</h5>
-                <img class="icon-selector" type="Fusionado" src="resources/shapes/fusionado.png">
+                <h5>Focalizado</h5>
+                <img class="icon-selector" type="Focalizado" src="resources/shapes/fusionado.png">
                 <h5>Fusionado - Hostil</h5>
                 <img class="icon-selector" type="Fusionado_Hostil" src="resources/shapes/fusionado_hostil.png">
                 <h5>Hostil</h5>
                 <img class="icon-selector" type="Hostil" src="resources/shapes/hostil.png">
                 <h5>Union</h5>
                 <img class="icon-selector" type="Flowchart" src="resources/shapes/union.png">
+                <h5>Fusionado</h5>
+                <img class="icon-selector" type="Fusionado" src="resources/shapes/fusionado2.png">
               </div>
               <h3>Opciones</h3>
               <div>
@@ -190,6 +192,19 @@
         <li theme="theme_3">Tema 3</li>
         <li theme="theme_4">Tema 4</li>
       </ul>
+    </div>
+    
+    <div id="settings_line" title="Line Settings">
+      <div class="size_content">
+        <label for="txt_size_line">Tamaño</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="number" max="4" min="1" value="1" id="txt_size_line" size="4">
+      </div>
+      <div class="size_content">
+        <label for="txt_color_line">Color</label>&nbsp;&nbsp;
+        <input class="color" id="txt_color_line" >
+      </div>
+      <div class="container_btn">
+        <button type="button" id="btn_delete_line">Borrar</button>
+      </div>
     </div>
     
     <div id="settings_path" title="Path Settings">
@@ -252,11 +267,12 @@
     <script src="js/jsPlumb-2.0.2-min.js"></script>
     <script src="js/prefixfree.min.js"></script>
     <script src="js/jquery.line.js"></script>
-    <script src="js/Conectores/Fusionado.js"></script>
+    <script src="js/Conectores/Focalizado.js"></script>
     <script src="js/Conectores/Enfocado_En.js"></script>
     <script src="js/Conectores/Hostil.js"></script>
     <script src="js/Conectores/Fusionado_Hostil.js"></script>
     <script src="js/Conectores/Cercano_Hostil.js"></script>
+    <script src="js/Conectores/Fusionado.js"></script>
     <script src="js/Conectores/Cercano.js"></script>
     <script src="js/Conectores/Abuso_Sexual.js"></script>
     <script src="js/Conectores/Cortado.js"></script>

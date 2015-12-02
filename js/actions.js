@@ -10,7 +10,6 @@ var _defaults = {
   conector : "Bezier"
 };
 
-
 //Begin Socket
 //Begin Socket
 var mxm = setInterval(function(){ 
@@ -21,7 +20,7 @@ var mxm = setInterval(function(){
             var current = All.get(i);
             
             if(_defaults.conector=="Distante"){
-                current.connector = "Fusionado";
+                current.connector = "Focalizado";
                 current.connectorStyle.dashstyle = "2 2";
             }else if(_defaults.conector=="Abuso_Sexual"){
                 current.connector = "Abuso_Sexual";
@@ -248,6 +247,10 @@ jsPlumb.ready(function(e){
 	    Container: "#canvas",
 	    connector:"Straight",
 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
+	    overlays:[ 
+        "Arrow", 
+          [ "Label", { label:"foo", location:50, id:"myLabel" } ]
+        ]
 	});
 
     // Evento que elimina el conector
@@ -291,7 +294,14 @@ jsPlumb.ready(function(e){
         isTarget: true,
         dropOptions: exampleDropOptions,
         anchor:"LeftMiddle",
-        maxConnections: 10
+        maxConnections: 10,
+        overlays:[
+           // [ "Label", { label:"foo", id:"label", location:[-0.5, -0.5] } ]
+        ],
+        connectorOverlays:[ 
+            [ "Arrow", { width:15, length:30, location:1, id:"arrow" } ],
+          //  [ "Label", { label:"foo", id:"label" } ]
+        ]
     };
     var exampleEndpoint2 = {
         paintStyle: { width: 2, height: 2, fillStyle: exampleColor },
@@ -311,7 +321,14 @@ jsPlumb.ready(function(e){
         isTarget: true,
         dropOptions: exampleDropOptions,
         anchor:"RightMiddle",
-        maxConnections: 10
+        maxConnections: 10,
+        overlays:[
+          //  [ "Label", { label:"foo", id:"label", location:[-0.5, -0.5] } ]
+        ],
+        connectorOverlays:[ 
+            [ "Arrow", { width:15, length:30, location:1, id:"arrow" } ],
+          //  [ "Label", { label:"foo", id:"label" } ]
+        ]
     };
     var exampleEndpoint3 = {
         paintStyle: { width: 25, height: 21, fillStyle: exampleColor },
@@ -331,7 +348,14 @@ jsPlumb.ready(function(e){
         isTarget: true,
         dropOptions: exampleDropOptions,
         anchor:"TopCenter",
-        maxConnections: 10
+        maxConnections: 10,
+        overlays:[
+          //  [ "Label", { label:"foo", id:"label", location:[-0.5, -0.5] } ]
+        ],
+        connectorOverlays:[ 
+            [ "Arrow", { width:15, length:30, location:1, id:"arrow" } ],
+            //[ "Label", { label:"foo", id:"label" } ]
+        ]
     };
     var exampleEndpoint4 = {
         paintStyle: { width: 10, height: 8, fillStyle: exampleColor },
@@ -351,7 +375,14 @@ jsPlumb.ready(function(e){
         isTarget: true,
         dropOptions: exampleDropOptions,
         anchor:"BottomCenter",
-        maxConnections: 10
+        maxConnections: 10,
+        overlays:[
+           // [ "Label", { label:"foo", id:"label", location:[-0.5, -0.5] } ]
+        ],
+        connectorOverlays:[ 
+           [ "Arrow", { width:15, length:30, location:1, id:"arrow" } ],
+            //[ "Label", { label:"foo", id:"label" } ]
+        ]
     };
 
     var anchors = [
@@ -409,10 +440,15 @@ jsPlumb.ready(function(e){
             });
 
             // Le añado los 4 puntos para los conetores
-			instance.addEndpoint($(droppedElement), exampleEndpoint);
-			instance.addEndpoint($(droppedElement), exampleEndpoint2);
-			instance.addEndpoint($(droppedElement), exampleEndpoint3);
-			instance.addEndpoint($(droppedElement), exampleEndpoint4);
+			var a = instance.addEndpoint($(droppedElement), exampleEndpoint);
+			var b = instance.addEndpoint($(droppedElement), exampleEndpoint2);
+			var c = instance.addEndpoint($(droppedElement), exampleEndpoint3);
+			var d = instance.addEndpoint($(droppedElement), exampleEndpoint4);
+			
+			a.addOverlay([ "Arrow", { width:10, height:10, id:"arrow" }]); 
+			b.addOverlay([ "Arrow", { width:10, height:10, id:"arrow" }]); 
+			c.addOverlay([ "Arrow", { width:10, height:10, id:"arrow" }]); 
+			d.addOverlay([ "Arrow", { width:10, height:10, id:"arrow" }]); 
 		
 		    // llamo el evento que me permite hacer click en el item  
 			event_shape();
@@ -469,6 +505,7 @@ jsPlumb.ready(function(e){
     setTimeout(function(){
         $( "#settings_path" ).dialog({ autoOpen: false });
         $( "#settings_item" ).dialog({ autoOpen: false });
+        $( "#settings_line" ).dialog({ autoOpen: false });
     }, 1000);
     
     // Eventos de los conectores
@@ -632,45 +669,6 @@ function handleFileSelect(evt) {
 
 // Evento cuando se carga un archivo
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
-
-function save_diagram(){
-    var nodes = [];
-
-    var numberOfElements = $('.shape').length;
-    
-    $('.shape').each(function(i,elem){
-        $elem = $(elem);
-    
-        var endpoints = jsPlumb.getEndpoints($elem.attr('id'));
-        
-        nodes.push({
-            blockId: $elem.attr('id'),
-            attrs: $elem.attr('type'),
-            nodetype: $elem.attr('data-nodetype'),
-            positionX: parseInt($elem.css("left"), 10),
-            positionY: parseInt($elem.css("top"), 10)
-        });
-        
-        var connections = [];
-        
-        $.each(jsPlumb.getConnections(), function (idx, connection) {
-            connections.push({
-                connectionId: connection.id,
-                pageSourceId: connection.sourceId,
-                pageTargetId: connection.targetId
-            });
-        });
-    
-        var flowChart = {};
-        flowChart.nodes = nodes;
-        flowChart.connections = connections;
-        flowChart.numberOfElements = numberOfElements;
-    
-        var flowChartJson = JSON.stringify(flowChart);
-        
-        console.log(flowChartJson);
-    });
-}
 
 // Evento que abre el popup de la configuración de cada item haciendo doble clik
 function event_shape(){
@@ -951,6 +949,7 @@ function document_click(){
                     $('.line').each(function(i,e){
                         $(e).attr('id', 'line'+i)
                     });
+                    event_line();
                     lines.draggable();
                 });
                 $('.wave').remove();
@@ -960,4 +959,31 @@ function document_click(){
         }
         
     };
+}
+
+function event_line(){
+    $('.line').unbind('dblclick').dblclick(function(){
+        $( "#settings_line" ).dialog( "open" );
+        delete_line($(this));
+        change_background_line($(this));
+    });
+}
+
+// Funcion que elimina una linea
+function delete_line(obj){
+    $("#btn_delete_line").unbind('click').click(function(){
+        obj.remove();
+        $("#settings_line").dialog( "close" );
+    });
+}
+
+// Funcion que le cambia el tamaño a la linea y el color
+function change_background_line(obj){
+    $('#txt_size_line').unbind('change').change(function(){
+        obj.css('border-width', $(this).val()+"px");
+    });
+    
+    $('#txt_color_line').unbind('change').change(function(){
+        obj.css('border-color', "#" + $(this).val());
+    });
 }

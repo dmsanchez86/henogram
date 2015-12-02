@@ -18,10 +18,10 @@
         ];
     };
 
-    var Fusionado = function(params) {
+    var Focalizado = function(params) {
         params = params || {};
         var _super =  jsPlumb.Connectors.AbstractConnector.apply(this, arguments);
-        this.type = "Fusionado";
+        this.type = "Focalizado";
 
         var wavelength = params.wavelength || 10,
             amplitude = params.amplitude || 10,
@@ -29,30 +29,15 @@
             compressedThreshold = params.compressedThreshold || 5;
 
         this._compute = function(paintInfo, paintParams) {
-                
-             _super.addSegment(this, "Straight", { 
-                x1:paintInfo.sx + 7, 
-                y1:paintInfo.sy + 7,
-                x2:paintInfo.tx + 7,
-                y2:paintInfo.ty + 7,
-             });
-             
-             _super.addSegment(this, "Straight", { 
-                x1:paintInfo.sx - 7, 
-                y1:paintInfo.sy - 7,
-                x2:paintInfo.tx - 7,
-                y2:paintInfo.ty - 7,
-             });
-                
+            
              _super.addSegment(this, "Straight", { 
                 x1:paintInfo.sx, 
                 y1:paintInfo.sy,
                 x2:paintInfo.tx,
-                y2:paintInfo.ty,
-             });
-                
+                y2:paintInfo.ty
+             });    
         };
     };
-    jsPlumbUtil.extend(Fusionado, jsPlumb.Connectors.AbstractConnector);
-    jsPlumb.registerConnectorType(Fusionado, "Fusionado");
+    jsPlumbUtil.extend(Focalizado, jsPlumb.Connectors.AbstractConnector);
+    jsPlumb.registerConnectorType(Focalizado, "Focalizado");
 })();
