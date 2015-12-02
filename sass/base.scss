@@ -139,10 +139,6 @@ body{
         background: $man;
         padding: .5rem;
         @include border-radius(50%);
-        
-        &.studied{
-            
-        }
     }
     
     &[type="woman_studied"]{
@@ -262,8 +258,8 @@ body{
             background-repeat: no-repeat;
             z-index: 9;
             position: absolute;
-            width: 95%;
-            height: 95%;
+            width: 90%;
+            height: 90%;
             margin: auto;
             top: 0;
             bottom: 0;

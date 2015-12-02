@@ -948,6 +948,9 @@ function document_click(){
                 $('#canvas').line((x1 - 233),y1,(x2 - 233),y2, {color:"#323232", stroke:3, zindex:10,cursor:'pointer'}, function(e){
                     var lines = $('#canvas > div:not(.shape,.overlay,.jsplumb-endpoint)');
                     lines.addClass('line');
+                    $('.line').each(function(i,e){
+                        $(e).attr('id', 'line'+i)
+                    });
                     lines.draggable();
                 });
                 $('.wave').remove();
