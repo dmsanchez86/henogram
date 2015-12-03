@@ -1,0 +1,30 @@
+                           _         __  __          _ _           
+    /\                    | |       |  \/  |        | (_)          
+   /  \   _ __   ___  _ __| |_ ___  | \  / | ___  __| |_  ___ ___  
+  / /\ \ | '_ \ / _ \| '__| __/ _ \ | |\/| |/ _ \/ _` | |/ __/ _ \ 
+ / ____ \| |_) | (_) | |  | ||  __/ | |  | |  __/ (_| | | (_| (_) |
+/_/    \_\ .__/ \___/|_|   \__\___| |_|  |_|\___|\__,_|_|\___\___/ 
+         | |                                                       
+         |_|                                                       
+
+/* TEAM */
+                            
+/* Developers */
+Title: Herman Andres Figuroa
+Site: http://github.com/heanfig
+Twitter: @heanfig
+Location: Manizales, Caldas
+
+Title: Daniel Mauricio Sanchez
+Site: http://github.com/dmsanchez86
+Twitter: @dmsanchez86
+Location: Manizales, Caldas
+							
+/* THANKS */
+Name: http://aportemedico.com
+
+/* SITE */
+
+Last update: 2015/12/04   
+Standards: HTML5, CSS3, JavaScript  
+Components: Materialize, jQuery, jQuery UI, jQuery Line, JsPlumb, SASS.
