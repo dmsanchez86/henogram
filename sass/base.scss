@@ -10,7 +10,7 @@ body{
         }
     }
     
-    .ui-widget-content{
+    .ui-widget-content.ui-dialog{
         border-color: #2969B0;
     }
     
@@ -48,7 +48,7 @@ body{
             }
         }
         
-        .ui-widget-content{
+        .ui-widget-content.ui-dialog{
             border-color: $brown_primary;
         }
         
@@ -94,7 +94,7 @@ body{
             }
         }
         
-        .ui-widget-content{
+        .ui-widget-content.ui-dialog{
             border-color: $red_primary;
         }
         
@@ -140,7 +140,7 @@ body{
             }
         }
         
-        .ui-widget-content{
+        .ui-widget-content.ui-dialog{
             border-color: $purple_primary;
         }
         
@@ -399,10 +399,17 @@ body{
     }
     
     .text{
-        top: initial!important;
-        bottom: -30px!important;
-        right: -41px!important;
-        margin: auto!important;
+        top: initial !important;
+        bottom: -111px !important;
+        right: -41px !important;
+        margin: auto !important;
+        border: none;
+        outline: none;
+        width: 90px!important;
+        text-align: center;
+        resize: none;
+        height: 101px!important;
+        overflow: hidden;
     }
     
     &.die{

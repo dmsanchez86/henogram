@@ -413,7 +413,7 @@ jsPlumb.ready(function(e){
 			$(droppedElement).append("<span class='age'></span>");
 			$(droppedElement).append("<span class='date'></span>");
 			$(droppedElement).append("<span class='name'></span>");
-			$(droppedElement).append("<span class='text'></span>");
+			$(droppedElement).append("<textarea class='text' readonly='true'></textarea>");
 			$(droppedElement).append("<button type='button' style='display: none'></button>");
 			
 			// agrego el item al canvas con su posicion

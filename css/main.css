@@ -7,7 +7,7 @@ body {
   transition: all 0.2s ease; }
   body .ui-draggable .ui-dialog-titlebar {
     background: #2969B0; }
-  body .ui-widget-content {
+  body .ui-widget-content.ui-dialog {
     border-color: #2969B0; }
   body [type="checkbox"].filled-in:checked + label:after {
     border: 2px solid #2969B0;
@@ -22,7 +22,7 @@ body {
     background: rgba(152, 106, 0, 0.61); }
   body.theme_2 .ui-draggable .ui-dialog-titlebar {
     background: #F1C04E; }
-  body.theme_2 .ui-widget-content {
+  body.theme_2 .ui-widget-content.ui-dialog {
     border-color: #F1C04E; }
   body.theme_2 [type="checkbox"].filled-in:checked + label:after {
     border: 2px solid #F1C04E;
@@ -39,7 +39,7 @@ body {
     background: rgba(255, 51, 51, 0.6); }
   body.theme_3 .ui-draggable .ui-dialog-titlebar {
     background: #FF3333; }
-  body.theme_3 .ui-widget-content {
+  body.theme_3 .ui-widget-content.ui-dialog {
     border-color: #FF3333; }
   body.theme_3 [type="checkbox"].filled-in:checked + label:after {
     border: 2px solid #FF3333;
@@ -56,7 +56,7 @@ body {
     background: rgba(150, 51, 255, 0.6); }
   body.theme_4 .ui-draggable .ui-dialog-titlebar {
     background: #9633FF; }
-  body.theme_4 .ui-widget-content {
+  body.theme_4 .ui-widget-content.ui-dialog {
     border-color: #9633FF; }
   body.theme_4 [type="checkbox"].filled-in:checked + label:after {
     border: 2px solid #9633FF;
@@ -288,9 +288,16 @@ body {
   right: initial !important; }
 .shape .text {
   top: initial !important;
-  bottom: -30px !important;
+  bottom: -111px !important;
   right: -41px !important;
-  margin: auto !important; }
+  margin: auto !important;
+  border: none;
+  outline: none;
+  width: 90px !important;
+  text-align: center;
+  resize: none;
+  height: 101px !important;
+  overflow: hidden; }
 .shape.die {
   position: relative; }
   .shape.die:before {
