@@ -19,6 +19,11 @@ body{
       background-color: #2969B0;
     }
     
+    input[type=text]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=number]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+        border-bottom: 1px solid #2969B0;
+        box-shadow: 0 1px 0 0 #2969B0;
+    }
+    
     &.theme_2{
         .app:before{
             background-color: $brown_primary;
@@ -62,6 +67,11 @@ body{
             &:hover{
                 color: $brown_primary;
             }
+        }
+        
+        input[type=text]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=number]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+            border-bottom: 1px solid $brown_primary;
+            box-shadow: 0 1px 0 0 $brown_primary;
         }
     }
     
@@ -109,6 +119,11 @@ body{
                 color: $red_primary;
             }
         }
+        
+        input[type=text]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=number]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+            border-bottom: 1px solid $red_primary;
+            box-shadow: 0 1px 0 0 $red_primary;
+        }
     }
     
     &.theme_4{
@@ -154,6 +169,11 @@ body{
             &:hover{
                 color: $purple_primary;
             }
+        }
+        
+        input[type=text]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=number]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+            border-bottom: 1px solid $purple_primary;
+            box-shadow: 0 1px 0 0 $purple_primary;
         }
     }
 }

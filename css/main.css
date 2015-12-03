@@ -12,6 +12,9 @@ body {
   body [type="checkbox"].filled-in:checked + label:after {
     border: 2px solid #2969B0;
     background-color: #2969B0; }
+  body input[type=text]:focus:not([readonly]), body input[type=date]:focus:not([readonly]), body input[type=number]:focus:not([readonly]), body textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #2969B0;
+    box-shadow: 0 1px 0 0 #2969B0; }
   body.theme_2 .app:before {
     background-color: #F1C04E; }
   body.theme_2 .toolbar {
@@ -29,6 +32,9 @@ body {
     background-color: #F1C04E; }
   body.theme_2 .down_ico:hover, body.theme_2 .delete_ico:hover, body.theme_2 .export_ico:hover, body.theme_2 .import_ico:hover {
     color: #F1C04E; }
+  body.theme_2 input[type=text]:focus:not([readonly]), body.theme_2 input[type=date]:focus:not([readonly]), body.theme_2 input[type=number]:focus:not([readonly]), body.theme_2 textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #F1C04E;
+    box-shadow: 0 1px 0 0 #F1C04E; }
   body.theme_3 .app:before {
     background-color: #FF3333; }
   body.theme_3 .toolbar {
@@ -46,6 +52,9 @@ body {
     background-color: #FF3333; }
   body.theme_3 .down_ico:hover, body.theme_3 .delete_ico:hover, body.theme_3 .export_ico:hover, body.theme_3 .import_ico:hover {
     color: #FF3333; }
+  body.theme_3 input[type=text]:focus:not([readonly]), body.theme_3 input[type=date]:focus:not([readonly]), body.theme_3 input[type=number]:focus:not([readonly]), body.theme_3 textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #FF3333;
+    box-shadow: 0 1px 0 0 #FF3333; }
   body.theme_4 .app:before {
     background-color: #9633FF; }
   body.theme_4 .toolbar {
@@ -63,6 +72,9 @@ body {
     background-color: #9633FF; }
   body.theme_4 .down_ico:hover, body.theme_4 .delete_ico:hover, body.theme_4 .export_ico:hover, body.theme_4 .import_ico:hover {
     color: #9633FF; }
+  body.theme_4 input[type=text]:focus:not([readonly]), body.theme_4 input[type=date]:focus:not([readonly]), body.theme_4 input[type=number]:focus:not([readonly]), body.theme_4 textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #9633FF;
+    box-shadow: 0 1px 0 0 #9633FF; }
 
 .panel_options {
   position: absolute;
