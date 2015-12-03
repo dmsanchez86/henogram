@@ -144,24 +144,6 @@ jsPlumb.ready(function(e){
 
             const MIME_TYPE = 'text/plain';
             
-            var Objs = [];
-            
-            $('.shape').each(function(i,e) {
-                var element = $(e);
-                
-                Objs.push({
-                    id: element.attr('id'), 
-                    html: element.html(),
-                    left: element.css('left'),
-                    top: element.css('top'),
-                    width: element.css('width'),
-                    height: element.css('height'),
-                    attrs: element.attr('type')
-                });
-            });
-            
-            console.log(Objs);
-            
             var obj = JSON.stringify( jsPlumb.save({
                 selector: '.shape'
             }) );
@@ -268,7 +250,7 @@ jsPlumb.ready(function(e){
 	    
    });
 
-	instance.setContainer($("#canvas"));
+	instance.setContainer("canvas");
 
     var exampleDropOptions = {
         tolerance: "touch",
@@ -751,20 +733,18 @@ function die_obj(obj){
 // Evento que recorre todos los items despues de importar un archivo
 function get_items(){
     debugger
-    instance = jsPlumb.getInstance({
-	    DragOptions: { cursor: 'pointer', zIndex: 100 },
-	    PaintStyle: { strokeStyle: '#666' },
-	    EndpointHoverStyle: { fillStyle: "orange" },
-	    HoverPaintStyle: { strokeStyle: "orange" },
-	    EndpointStyle: { width: 2, height: 2},
-	    endpoint:"Rectangle",
-	    Anchors: ["TopCenter", "TopCenter"],
-	    Container: "#canvas",
-	    connector:"Straight",
-	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
-	});
-
-    console.log(instance);
+//     instance = jsPlumb.getInstance({
+// 	    DragOptions: { cursor: 'pointer', zIndex: 100 },
+// 	    PaintStyle: { strokeStyle: '#666' },
+// 	    EndpointHoverStyle: { fillStyle: "orange" },
+// 	    HoverPaintStyle: { strokeStyle: "orange" },
+// 	    EndpointStyle: { width: 2, height: 2},
+// 	    endpoint:"Rectangle",
+// 	    Anchors: ["TopCenter", "TopCenter"],
+// 	    Container: "#canvas",
+// 	    connector:"Straight",
+// 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
+// 	});
 
     // Evento que elimina el conector
     instance.bind("dblclick", function(conn) {
@@ -871,20 +851,20 @@ function get_items(){
     };
     
     
-    $('.shape').each(function(i,e){
-        var $e = $(e);
+//     $('.shape').each(function(i,e){
+//         var $e = $(e);
         
-        // Vuelvo draggable el item
-    	instance.draggable($e,  {
-           containment:true
-        });
+//         // Vuelvo draggable el item
+//     	instance.draggable($e,  {
+//           containment:true
+//         });
         
-        // Le añado los 4 puntos para los conetores
-		instance.addEndpoint($e, exampleEndpoint);
-		instance.addEndpoint($e, exampleEndpoint2);
-		instance.addEndpoint($e, exampleEndpoint3);
-		instance.addEndpoint($e, exampleEndpoint4);
-    });
+//         // Le añado los 4 puntos para los conetores
+// 		instance.addEndpoint($e, exampleEndpoint);
+// 		instance.addEndpoint($e, exampleEndpoint2);
+// 		instance.addEndpoint($e, exampleEndpoint3);
+// 		instance.addEndpoint($e, exampleEndpoint4);
+//     });
 }
 
 // Funcion que permite dibujar la linea

@@ -8,9 +8,11 @@
         var conn = options.savedObj;
         plumbInstance = instance;
         var blocks = conn.blocks;
+        var endpoints_ = conn.end_pointsRestantes;
+        var connections = conn.connections;
         
         // Donde se agrega uno por uno los items del archivo
-        for (var i = 0; i < blocks.length; i++) {
+        for (var i = 0; i < blocks.length; i++) {debugger
             var o = blocks[i];
             if ($("#" + o.id).length == 0) {
                 var elem = $("<div/>");
@@ -39,9 +41,7 @@
                 });
             }
         }
-        var connections = conn.connections;
         for (var i = 0; i < connections.length; i++) {
-
             var connection1 = plumbInstance.connect({
                 source: connections[i].sourceId,
                 target: connections[i].targetId,
@@ -75,16 +75,24 @@
                 connection1.addOverlay([overlay.type, overlay]);
             });
         }
+        for (var i = 0; i < endpoints_.length; i++) {
+            var _id = "#" + endpoints_[i].IdEl;
+            var $selId = $(_id);
+            var $currentOp = endpoints_[i].currentEndpoint;
+            plumbInstance.addEndpoint( $selId , $currentOp);
+        }
+        
         plumbInstance.draggable(plumbInstance.getSelector(options.savedObj.selector), {
             drag: function(e) {
             }
         });
     };
 
-    jsPlumbInstance.save = function(options,plumbInstance){
+    jsPlumbInstance.save = function(options, plumbInstance){
         if(!options || !options.selector)
             return {};
-        
+        debugger
+        console.log(options);
         plumbInstance = instance;
         
         var connection;
@@ -109,7 +117,7 @@
         
         var connections = [];
         
-        for (var i = 0; i < connection.length; i++) {
+        for (var i = 0; i < connection.length; i++) {debugger
             var id = connection[i].sourceId;
             var endpoints = plumbInstance.getEndpoints(connection[i].sourceId);
             var connector = connection[i].getConnector();
@@ -204,9 +212,49 @@
                     return temp;
                 })
             });
-        }
+        };
+        
+        var end_points = [];
+        
+        plumbInstance.selectEndpoints().each(function(e){
+            if( e.connections.length > 0 ){
+                console.log("Not");
+            }else{
+                
+                var currentatt = {};
+                
+                currentatt.currentEndpoint = {
+                    paintStyle: { width: 2, height: 2, fillStyle: "#00f" },
+                    isSource: true,
+                    EndpointStyle: { width: 2, height: 2},
+                    reattach: true,
+                    scope: "blue",
+                    connectorStyle: {
+                        gradient: {stops: [
+                            [0, "#00f"],
+                            [0.5, "#09098e"],
+                            [1, "#00f"]
+                        ]},
+                        lineWidth: 1.3,
+                        strokeStyle: "#00f",
+                    },
+                    isTarget: true,
+                    dropOptions:  {
+                        tolerance: "touch",
+                        hoverClass: "dropHover",
+                        activeClass: "dragActive"
+                    },
+                    anchor: e.anchor.type,
+                    maxConnections: 10           
+                }
+                
+                currentatt.IdEl = e.elementId;
+                
+                end_points.push(currentatt);                
+            }
+        });
 
-        var obj = {selector:options.selector,connections: connections, blocks: blocks};
+        var obj = {selector:options.selector,connections: connections, blocks: blocks, end_pointsRestantes:end_points};
         return obj;
     };
 })(jsPlumb);
