@@ -201,12 +201,14 @@ jsPlumb.ready(function(e){
         e.preventDefault();
         $("#files").click();
     });
-   
-    // Evento que limpia el contenedor
-    $(".delete_icon").click(function(e){
-       e.preventDefault();
-       instance.remove();
-       $('.jtk-demo-main').empty();
+    
+    // Evento que limpia el contenedor principal
+    $(".delete_ico").unbind('click').click(function(e){
+         e.preventDefault();
+         var $overlay = $('.overlay'); 
+         instance.reset();
+         $("#canvas").empty();
+         $("#canvas").append($overlay);
     });
    
     // Evento que selecciona el tipo de conector
@@ -488,13 +490,6 @@ jsPlumb.ready(function(e){
 	});
 	
 	var timeout = null;
-	
-	// Evento que limpia el contenedor principal
-    $(".delete_ico").click(function(e){
-         e.preventDefault();
-         instance.reset();
-         $("#canvas").empty();
-    });
     
     // Selecciono el item para los conectores
     setTimeout(function(){ 
@@ -619,6 +614,7 @@ jsPlumb.ready(function(e){
 	}
 });
 
+// Evento se ejecuta cuando se importa un archivo
 function handleFileSelect(evt) {
     var files = evt.target.files;
 
@@ -733,23 +729,12 @@ function change_background(obj){
 
 // Evento que le agrega los tipos de aborto al item
 function die_obj(obj){
-    $("#chb_ind_a").unbind("change").change(function(){
-        obj.removeClass("ind_abortion").toggleClass("esp_abortion");
-        $("#chb_none + label").show();
-    });
-    
-    $("#chb_esp_a").unbind("change").change(function(){
-        obj.removeClass("esp_abortion").toggleClass("ind_abortion");
-        $("#chb_none + label").show();
-    });
-    
-    $("#chb_none").unbind("change").change(function(){
-        obj.removeClass("esp_abortion ind_abortion");
-        $("#chb_none + label").hide();
+    $("#die_item").unbind("change").change(function(){
+        obj.toggleClass("die");
     });
 }
 
-// Evento que recorre todos los items
+// Evento que recorre todos los items despues de importar un archivo
 function get_items(){
     debugger
     instance = jsPlumb.getInstance({
@@ -888,6 +873,7 @@ function get_items(){
     });
 }
 
+// Funcion que permite dibujar la linea
 function document_click(){
     var body = document.querySelector('.body');
     var canvas = document.querySelector('#canvas');
@@ -901,7 +887,7 @@ function document_click(){
             var position_Y = evt.clientY - 50;
             
             if(step == 1){
-                x1 = position_X;
+                x1 = evt.pageX;
                 y1 = position_Y;
             }
             
@@ -918,34 +904,36 @@ function document_click(){
             
             setTimeout(function(){
                 wave.className = 'wave effect';
-                // setTimeout(function(){
-                //     body.removeChild(wave);
-                // },600);
             },10);
             
             if(step > 2){
-                x2 = position_X;
+                x2 = evt.pageX;
                 y2 = position_Y;
                 step = 1;
                 $('.overlay').removeClass('open').attr('step', step);
-                $('#canvas').line((x1 - 233),y1,(x2 - 233),y2, {color:"#323232", stroke:3, zindex:10,cursor:'pointer'}, function(e){
-                    var lines = $('#canvas > div:not(.shape,.overlay,.jsplumb-endpoint)');
-                    lines.addClass('line');
-                    $('.line').each(function(i,e){
-                        $(e).attr('id', 'line'+i)
+                $('#canvas').line((x1 - ($(".content.toolbox.row").width())), y1, (x2 - ($(".content.toolbox.row").width())), y2, {
+                        color: "#323232", 
+                        stroke: 3, 
+                        zindex: 10,
+                    }, 
+                    function(e){
+                        var lines = $('#canvas > div:not(.shape,.overlay,.jsplumb-endpoint)');
+                        lines.addClass('line');
+                        $('.line').each(function(i,e){
+                            $(e).attr('id', 'line'+i)
+                        });
+                        event_line();
+                        lines.draggable();
                     });
-                    event_line();
-                    lines.draggable();
-                });
                 $('.wave').remove();
             }
         }else{
             return;
         }
-        
     };
 }
 
+// Evento de las lineas dibujadas
 function event_line(){
     $('.line').unbind('dblclick').dblclick(function(){
         $( "#settings_line" ).dialog( "open" );
