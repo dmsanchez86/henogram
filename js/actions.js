@@ -843,21 +843,22 @@ function get_items(){
         maxConnections: 10
     };
     
-    
-//     $('.shape').each(function(i,e){
-//         var $e = $(e);
+    $('.shape').each(function(i,e){
+        var $e = $(e);
         
-//         // Vuelvo draggable el item
-//     	instance.draggable($e,  {
-//           containment:true
-//         });
+        $e.find('.ui-resizable-handle').remove();
         
-//         // Le añado los 4 puntos para los conetores
-// 		instance.addEndpoint($e, exampleEndpoint);
-// 		instance.addEndpoint($e, exampleEndpoint2);
-// 		instance.addEndpoint($e, exampleEndpoint3);
-// 		instance.addEndpoint($e, exampleEndpoint4);
-//     });
+        $e.resizable({ 
+            handles: 'se, sw, nw',
+            resize : function(event, ui) {     
+                instance.repaintEverything();
+            },
+            maxWidth:110,
+            minWidth:65,
+            minHeight:65,
+            maxHeight:110
+        });
+    });
 }
 
 // Funcion que permite dibujar la linea
