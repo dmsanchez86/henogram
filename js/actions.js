@@ -589,8 +589,14 @@ jsPlumb.ready(function(e){
 	// Evento que le agrega los tipos de aborto al item
 	function die_obj(obj){
 	    $("#die_item").unbind("change").change(function(){
-	        obj.toggleClass("die");
-	    });
+            if(toggle_die){
+                obj.attr('die', '');
+                toggle_die = false;
+            }else{
+                obj.removeAttr('die');
+                toggle_die = true;
+            }
+        });
 	}
 	
 	// Evento que cambia el tema de la página
@@ -727,10 +733,18 @@ function change_background(obj){
     });
 }
 
+var toggle_die = true;
+
 // Evento que le agrega los tipos de aborto al item
 function die_obj(obj){
     $("#die_item").unbind("change").change(function(){
-        obj.toggleClass("die");
+        if(toggle_die){
+            obj.attr('die', '');
+            toggle_die = false;
+        }else{
+            obj.removeAttr('die');
+            toggle_die = true;
+        }
     });
 }
 

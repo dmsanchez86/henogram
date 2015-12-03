@@ -194,7 +194,7 @@ body {
       content: '';
       border: 32px solid #fff;
       border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
-      height: 100%;
+      border-width: 34px 32px 0 32px;
       display: block;
       position: absolute;
       top: 20px;
@@ -298,9 +298,9 @@ body {
   resize: none;
   height: 101px !important;
   overflow: hidden; }
-.shape.die {
+.shape[die] {
   position: relative; }
-  .shape.die:before {
+  .shape[die]:before {
     background-image: url(../resources/shapes/die.png);
     background-size: contain;
     background-repeat: no-repeat;

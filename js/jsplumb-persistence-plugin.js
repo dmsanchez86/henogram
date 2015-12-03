@@ -26,7 +26,8 @@
                 elem.html(o.html);
                 elem.attr({
                     'class': 'component window shape',
-                    'type': o.type
+                    'type': o.type,
+                    'die': o.die
                 });
                 $(options.containerSelector).append(elem);
             } else {
@@ -101,7 +102,8 @@
                 top: parseInt($elem.css("top"), 10),
                 width: parseInt($elem.css("width"), 10),
                 heigth: parseInt($elem.css("heigth"), 10),
-                html: $elem.html()
+                html: $elem.html(),
+                die: $elem.attr('die')
             });
         });
         
