@@ -5,6 +5,13 @@ body {
   -ms-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease; }
+  body .ui-draggable .ui-dialog-titlebar {
+    background: #2969B0; }
+  body .ui-widget-content {
+    border-color: #2969B0; }
+  body [type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #2969B0;
+    background-color: #2969B0; }
   body.theme_2 .app:before {
     background-color: #F1C04E; }
   body.theme_2 .toolbar {
@@ -13,6 +20,15 @@ body {
     background: #986A00; }
   body.theme_2 .panel_options {
     background: rgba(152, 106, 0, 0.61); }
+  body.theme_2 .ui-draggable .ui-dialog-titlebar {
+    background: #F1C04E; }
+  body.theme_2 .ui-widget-content {
+    border-color: #F1C04E; }
+  body.theme_2 [type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #F1C04E;
+    background-color: #F1C04E; }
+  body.theme_2 .down_ico:hover, body.theme_2 .delete_ico:hover, body.theme_2 .export_ico:hover, body.theme_2 .import_ico:hover {
+    color: #F1C04E; }
   body.theme_3 .app:before {
     background-color: #FF3333; }
   body.theme_3 .toolbar {
@@ -21,6 +37,15 @@ body {
     background: #B91010; }
   body.theme_3 .panel_options {
     background: rgba(255, 51, 51, 0.6); }
+  body.theme_3 .ui-draggable .ui-dialog-titlebar {
+    background: #FF3333; }
+  body.theme_3 .ui-widget-content {
+    border-color: #FF3333; }
+  body.theme_3 [type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #FF3333;
+    background-color: #FF3333; }
+  body.theme_3 .down_ico:hover, body.theme_3 .delete_ico:hover, body.theme_3 .export_ico:hover, body.theme_3 .import_ico:hover {
+    color: #FF3333; }
   body.theme_4 .app:before {
     background-color: #9633FF; }
   body.theme_4 .toolbar {
@@ -29,6 +54,15 @@ body {
     background: #4510B9; }
   body.theme_4 .panel_options {
     background: rgba(150, 51, 255, 0.6); }
+  body.theme_4 .ui-draggable .ui-dialog-titlebar {
+    background: #9633FF; }
+  body.theme_4 .ui-widget-content {
+    border-color: #9633FF; }
+  body.theme_4 [type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #9633FF;
+    background-color: #9633FF; }
+  body.theme_4 .down_ico:hover, body.theme_4 .delete_ico:hover, body.theme_4 .export_ico:hover, body.theme_4 .import_ico:hover {
+    color: #9633FF; }
 
 .panel_options {
   position: absolute;
@@ -560,5 +594,9 @@ path {
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
+
+.ui-dialog .ui-dialog-title {
+  color: white;
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=main.css.map */
