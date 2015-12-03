@@ -502,7 +502,7 @@ jsPlumb.ready(function(e){
             text_shape($(this));
             die_obj($(this));
             
-            if ($(this).hasClass("die"))
+            if ($(this).attr("die") == "")
                 $("#die_item").prop("checked", true);
             else
 	            $("#die_item").prop("checked", false);
@@ -647,15 +647,12 @@ function event_shape(){
         change_background($(this));
         text_shape($(this));
         die_obj($(this));
+        debugger
         
-        if ($(this).hasClass("ind_abortion")){
-            $("#chb_ind_a").prop("checked", true);
-        }else if($(this).hasClass("esp_abortion")){
-            $("#chb_esp_a").prop("checked", true);
-        }else{
-            $("#chb_ind_a,#chb_esp_a").prop("checked", false);
-            $("#chb_none + label").hide();
-        }
+        if ($(this).attr("die") == "")
+            $("#die_item").prop("checked", true);
+        else
+            $("#die_item").prop("checked", false);
         
         if(
             $(this).find('.date').text() != "" || 
@@ -700,8 +697,7 @@ function text_shape(obj){
 }
 
 // Evento que borra un item con sus conectores
-function delete_shape(obj){debugger
-    console.log(obj);
+function delete_shape(obj){
     $("#btn_delete").unbind('click').click(function(){
         obj.remove();
         $("#settings_item").dialog( "close" );
