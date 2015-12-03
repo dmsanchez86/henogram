@@ -525,14 +525,10 @@ jsPlumb.ready(function(e){
             text_shape($(this));
             die_obj($(this));
             
-            if ($(this).hasClass("ind_abortion")){
-                $("#chb_ind_a").prop("checked", true);
-            }else if($(this).hasClass("esp_abortion")){
-                $("#chb_esp_a").prop("checked", true);
-            }else{
-	            $("#chb_ind_a,#chb_esp_a").prop("checked", false);
-	            $("#chb_none + label").hide();
-            }
+            if ($(this).hasClass("die"))
+                $("#die_item").prop("checked", true);
+            else
+	            $("#die_item").prop("checked", false);
             
             if(
                 $(this).find('.date').text() != "" || 
@@ -597,19 +593,8 @@ jsPlumb.ready(function(e){
 	
 	// Evento que le agrega los tipos de aborto al item
 	function die_obj(obj){
-	    $("#chb_ind_a").unbind("change").change(function(){
-	        obj.removeClass("ind_abortion").toggleClass("esp_abortion");
-	        $("#chb_none + label").show();
-	    });
-	    
-	    $("#chb_esp_a").unbind("change").change(function(){
-	        obj.removeClass("esp_abortion").toggleClass("ind_abortion");
-	        $("#chb_none + label").show();
-	    });
-	    
-	    $("#chb_none").unbind("change").change(function(){
-	        obj.removeClass("esp_abortion ind_abortion");
-	        $("#chb_none + label").hide();
+	    $("#die_item").unbind("change").change(function(){
+	        obj.toggleClass("die");
 	    });
 	}
 	

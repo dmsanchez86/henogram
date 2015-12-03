@@ -323,6 +323,26 @@ body{
         right: -41px!important;
         margin: auto!important;
     }
+    
+    &.die{
+        position: relative;
+        
+        &:before{
+            background-image: url(../resources/shapes/die.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 9;
+            position: absolute;
+            width: 76%;
+            height: 76%;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            content: '';
+        }
+    }
 }
 
 .size_content{
