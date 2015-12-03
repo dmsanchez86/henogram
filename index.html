@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Metas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Software para Psicólogos">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Henograma,Psicología">
+    <meta name="author" content="Herman Andres Figueroa">
+    <meta name="author" content="Daniel Mauricio Sanchez">
   
     <title>Genograma</title>
     
+    <!-- Librerias CSS y Hojas de Estilos -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
@@ -15,10 +21,11 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/herman.css" id="theme_config">
     
+    <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-            
   </head>
   <body class="body">
+    <!-- Cargador de la Página -->
     <div class="loader">
       <div class="preloader-wrapper big active">
         <div class="spinner-layer spinner-blue-only">
@@ -32,7 +39,8 @@
         </div>
       </div>
     </div>
-
+    
+    <!-- Contenedor Principal -->
     <div class="app">
       
       <div class="all">
@@ -121,7 +129,10 @@
                     <p class="title">Embarazo</p>
                   </div>
                   <div class="col s6">
-                    <p class="title draw_line">Linea</p>
+                    <p class="title draw_line">
+                      Dibujar Linea
+                      <span></span>
+                    </p>
                   </div>
               </div>
               <h3>Conectores</h3>
@@ -183,6 +194,7 @@
       
     </div>
     
+    <!-- Contenedor de los temas -->
     <div class="settings">
       <img src="resources/settings.png"></img>
       <ul>
@@ -193,6 +205,7 @@
       </ul>
     </div>
     
+    <!-- Popups de Configuración -->
     <div id="settings_line" title="Line Settings">
       <div class="size_content">
         <label for="txt_size_line">Tamaño</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="number" max="4" min="1" value="1" id="txt_size_line" size="4">

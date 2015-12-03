@@ -920,7 +920,10 @@ function document_click(){
                         var lines = $('#canvas > div:not(.shape,.overlay,.jsplumb-endpoint)');
                         lines.addClass('line');
                         $('.line').each(function(i,e){
-                            $(e).attr('id', 'line'+i)
+                            $(e).attr({
+                                'id': 'line'+i,
+                                'title': 'Esta linea se puede mover'
+                            });
                         });
                         event_line();
                         lines.draggable();
