@@ -245,7 +245,8 @@ body {
       z-index: 3; }
   .icon-drag[type="esp_abortion"], .shape[type="esp_abortion"] {
     position: relative;
-    border: thin solid #302F2F; }
+    border: thin solid #302F2F;
+    background-color: white; }
     .icon-drag[type="esp_abortion"]:before, .shape[type="esp_abortion"]:before {
       background-image: url(../resources/shapes/die.png);
       background-size: contain;

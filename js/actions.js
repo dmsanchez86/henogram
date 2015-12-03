@@ -94,7 +94,7 @@ jsPlumb.ready(function(e){
     // Si recargo la pagina y quiere recuperar lo que estaba haciendo
     if(localStorage.getItem('autoload') != null){
         //Clear jsPlumb memory of connections/connectors & endpoints
-        //sjsPlumb.reset();debugger
+        //sjsPlumb.reset();
 
         //Clear DOM
        /* $("#canvas").empty();
@@ -642,12 +642,10 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 // Evento que abre el popup de la configuración de cada item haciendo doble clik
 function event_shape(){
     $(".shape").unbind("dblclick").dblclick(function(){
-        console.log($(this));
         delete_shape($(this));
         change_background($(this));
         text_shape($(this));
         die_obj($(this));
-        debugger
         
         if ($(this).attr("die") == "")
             $("#die_item").prop("checked", true);
@@ -728,7 +726,6 @@ function die_obj(obj){
 
 // Evento que recorre todos los items despues de importar un archivo
 function get_items(){
-    debugger
 //     instance = jsPlumb.getInstance({
 // 	    DragOptions: { cursor: 'pointer', zIndex: 100 },
 // 	    PaintStyle: { strokeStyle: '#666' },
@@ -916,7 +913,14 @@ function document_click(){
                             });
                         });
                         event_line();
-                        lines.draggable();
+                        lines.draggable({ 
+                            cursor: "move", 
+                            cursorAt: { 
+                                top: 30, 
+                                left: 56
+                            },
+                            containment: "#canvas"
+                        });
                     });
                 $('.wave').remove();
             }
