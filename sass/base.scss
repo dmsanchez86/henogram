@@ -294,7 +294,7 @@ body{
             content: '';
             border: 32px solid #fff;
             border-color: rgba(0,0,0,.85) transparent transparent transparent;
-            height: 100%;
+            border-width: 34px 32px 0 32px;
             display: block;
             position: absolute;
             top: 20px;
@@ -311,10 +311,10 @@ body{
             content: '';
             border: 32px solid #323232;
             display: block;
-            height: 100%;
             border-color: transparent transparent $woman transparent;
+            border-width: 0px 32px 34px 32px;
             position: absolute;
-            top: -10px;
+            bottom: 13px;
         }
         
         &:before{
@@ -484,7 +484,6 @@ body{
         position: static;
     }
 }
-
 
 .type_connector {
     background: rgba(150, 135, 135, 0.32);
