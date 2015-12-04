@@ -726,7 +726,7 @@ function die_obj(obj){
 
 // Evento que recorre todos los items despues de importar un archivo
 function get_items(){
-    instance = jsPlumb.getInstance({
+    /*instance = jsPlumb.getInstance({
 	    DragOptions: { cursor: 'pointer', zIndex: 100 },
 	    PaintStyle: { strokeStyle: '#666' },
 	    EndpointHoverStyle: { fillStyle: "orange" },
@@ -737,7 +737,7 @@ function get_items(){
 	    Container: "#canvas",
 	    connector:"Straight",
 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
-	});
+	});*/
 
     // Evento que elimina el conector
     instance.bind("dblclick", function(conn) {

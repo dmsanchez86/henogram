@@ -4573,6 +4573,7 @@
             };
 
             if (!jsPlumb.connectorsInitialized) {
+                console.log("Inicio de contenedores");
                 for (var i = 0; i < connectorTypes.length; i++) {
                     for (var j = 0; j < rendererTypes.length; j++) {
                         _oneType(rendererTypes[j], connectorTypes[i][1], connectorTypes[i][0]);
@@ -6593,7 +6594,7 @@
         _jp.OverlayCapableJsPlumbUIComponent.apply(this, arguments);
 
 // TYPE
-
+        
         this.appendToDefaultType({
             connectionType:params.connectionType,
             maxConnections: params.maxConnections == null ? this._jsPlumb.instance.Defaults.MaxConnections : params.maxConnections, // maximum number of connections this endpoint can be the source of.,
@@ -7754,11 +7755,15 @@
         _jp = root.jsPlumb,
         _ju = root.jsPlumbUtil;
 
-
+    //@herman andres
     var makeConnector = function (_jsPlumb, renderMode, connectorName, connectorArgs, forComponent) {
             if (!_jsPlumb.Defaults.DoNotThrowErrors && jsPlumb.Connectors[renderMode][connectorName] == null)
                 throw { msg: "jsPlumb: unknown connector type '" + connectorName + "'" };
-
+            
+            if( connectorName == "Bezier" ){
+                var connectorName = _defaults.conector;
+            }
+            
             return new _jp.Connectors[renderMode][connectorName](connectorArgs, forComponent);
         },
         _makeAnchor = function (anchorParams, elementId, _jsPlumb) {
