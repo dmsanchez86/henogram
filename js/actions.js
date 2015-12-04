@@ -726,18 +726,18 @@ function die_obj(obj){
 
 // Evento que recorre todos los items despues de importar un archivo
 function get_items(){
-//     instance = jsPlumb.getInstance({
-// 	    DragOptions: { cursor: 'pointer', zIndex: 100 },
-// 	    PaintStyle: { strokeStyle: '#666' },
-// 	    EndpointHoverStyle: { fillStyle: "orange" },
-// 	    HoverPaintStyle: { strokeStyle: "orange" },
-// 	    EndpointStyle: { width: 2, height: 2},
-// 	    endpoint:"Rectangle",
-// 	    Anchors: ["TopCenter", "TopCenter"],
-// 	    Container: "#canvas",
-// 	    connector:"Straight",
-// 	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
-// 	});
+    instance = jsPlumb.getInstance({
+	    DragOptions: { cursor: 'pointer', zIndex: 100 },
+	    PaintStyle: { strokeStyle: '#666' },
+	    EndpointHoverStyle: { fillStyle: "orange" },
+	    HoverPaintStyle: { strokeStyle: "orange" },
+	    EndpointStyle: { width: 2, height: 2},
+	    endpoint:"Rectangle",
+	    Anchors: ["TopCenter", "TopCenter"],
+	    Container: "#canvas",
+	    connector:"Straight",
+	    endpoint:[ "Image", { src:"http://morrisonpitt.com/jsPlumb/img/endpointTest1.png" } ],
+	});
 
     // Evento que elimina el conector
     instance.bind("dblclick", function(conn) {

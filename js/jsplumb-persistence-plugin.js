@@ -12,7 +12,7 @@
         var connections = conn.connections;
         
         // Donde se agrega uno por uno los items del archivo
-        for (var i = 0; i < blocks.length; i++) {debugger
+        for (var i = 0; i < blocks.length; i++) {
             var o = blocks[i];
             if ($("#" + o.id).length == 0) {
                 var elem = $("<div/>");
@@ -91,8 +91,7 @@
     jsPlumbInstance.save = function(options, plumbInstance){
         if(!options || !options.selector)
             return {};
-        debugger
-        console.log(options);
+        
         plumbInstance = instance;
         
         var connection;
@@ -117,7 +116,7 @@
         
         var connections = [];
         
-        for (var i = 0; i < connection.length; i++) {debugger
+        for (var i = 0; i < connection.length; i++) {
             var id = connection[i].sourceId;
             var endpoints = plumbInstance.getEndpoints(connection[i].sourceId);
             var connector = connection[i].getConnector();

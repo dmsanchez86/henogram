@@ -6346,9 +6346,33 @@
             }
         },
         addOverlay: function (overlay, doNotRepaint) {
-            var o = _processOverlay(this, overlay);
-            if (!doNotRepaint) this.repaint();
-            return o;
+            if( typeof( this.connector ) == "string"){
+                if( this.connector == "Enfocado_En" || this.connector == "Abuso_Sexual" ){
+                    var o = _processOverlay(this, overlay);
+                    if (!doNotRepaint) this.repaint();
+                    return o; 
+                }else{
+                    if (!doNotRepaint) this.repaint();
+                    return {
+                        id : 23
+                    };
+                }
+            }else{
+                if(this.connector == undefined){
+                    var o = _processOverlay(this, overlay);
+                    if (!doNotRepaint) this.repaint();
+                    return o; 
+                }else if( this.connector.type == "Enfocado_En" || this.connector.type == "Abuso_Sexual" ){
+                    var o = _processOverlay(this, overlay);
+                    if (!doNotRepaint) this.repaint();
+                    return o;
+                }else{
+                    if (!doNotRepaint) this.repaint();
+                    return {
+                        id : 23
+                    };
+                }                
+            }
         },
         getOverlay: function (id) {
             return this._jsPlumb.overlays[id];
@@ -10504,7 +10528,7 @@
                     d: d,
                     lineWidth: lineWidth,
                     strokeStyle: strokeStyle,
-                    fillStyle: fillStyle,
+                    fillStyle: "black",
                     minX: Math.min(hxy.x, tail[0].x, tail[1].x),
                     maxX: Math.max(hxy.x, tail[0].x, tail[1].x),
                     minY: Math.min(hxy.y, tail[0].y, tail[1].y),
