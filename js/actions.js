@@ -418,8 +418,8 @@ jsPlumb.ready(function(e){
                     instance.repaintEverything();
                 },
                 maxWidth:110,
-                minWidth:65,
-                minHeight:65,
+                minWidth:45,
+                minHeight:42,
                 maxHeight:110
             });
 
@@ -614,7 +614,9 @@ function handleFileSelect(evt) {
                 var compila = JSON.parse( e.target.result );
                 
                 instance.reset();
+                var $overlay = $('.overlay'); 
                 $("#canvas").empty();
+                $("#canvas").append($overlay);
                 
                 jsPlumb.load({
                    savedObj: compila,
@@ -854,8 +856,8 @@ function get_items(){
                 instance.repaintEverything();
             },
             maxWidth:110,
-            minWidth:65,
-            minHeight:65,
+            minWidth:45,
+            minHeight:42,
             maxHeight:110
         });
     });

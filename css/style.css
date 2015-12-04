@@ -392,6 +392,12 @@ path:hover{
   line-height: 1;
 }
 
+.conectors h5 + img{
+  max-width: 80px;
+  display: block;
+  margin: .3rem auto; 
+}
+
 .icon-selector{
   max-width: 100%;
   height: auto;
@@ -409,7 +415,7 @@ path:hover{
 #ui-id-2,
 #ui-id-4 {
     overflow: auto;
-    height: 380px;
+    height: 435px;
     padding-right: 12px;
 }
 
