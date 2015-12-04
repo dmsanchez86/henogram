@@ -390,6 +390,7 @@ path:hover{
   text-align: center;
   margin: 0;
   line-height: 1;
+  font-weight: bold;
 }
 
 .conectors h5 + img{

@@ -138,26 +138,46 @@
               </div>
               <h3>Conectores</h3>
               <div class="conectors_content">
-                <h5>Union</h5>
-                <img class="icon-selector" type="Flowchart" src="resources/shapes/union.png">
-                <h5>Enfocado en</h5>
-                <img class="icon-selector" type="Enfocado_En" src="resources/shapes/enfocado.png">
-                <h5>Focalizado</h5>
-                <img class="icon-selector" type="Focalizado" src="resources/shapes/fusionado.png">
-                <h5>Cercano</h5>
-                <img class="icon-selector" type="Cercano" src="resources/shapes/cercano.png">
-                <h5>Fusionado</h5>
-                <img class="icon-selector" type="Fusionado" src="resources/shapes/fusionado2.png">
-                <h5>Distante</h5>
-                <img class="icon-selector" type="Distante" src="resources/shapes/distante.png">
-                <h5>Hostil</h5>
-                <img class="icon-selector" type="Hostil" src="resources/shapes/hostil.png">
-                <h5>Abuso Sexual</h5>
-                <img class="icon-selector" type="Abuso_Sexual" src="resources/shapes/abuso_sexual.png">
-                <h5>Cercano - Hostil</h5>
-                <img class="icon-selector" type="Cercano_Hostil" src="resources/shapes/cercano_hostil.png">
-                <h5>Fusionado - Hostil</h5>
-                <img class="icon-selector" type="Fusionado_Hostil" src="resources/shapes/fusionado_hostil.png">
+                <div class="content_conectors">
+                  <h5>Union</h5>
+                  <img class="icon-selector" type="Flowchart" src="resources/shapes/union.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Enfocado en</h5>
+                  <img class="icon-selector" type="Enfocado_En" src="resources/shapes/enfocado.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Focalizado</h5>
+                  <img class="icon-selector" type="Focalizado" src="resources/shapes/fusionado.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Cercano</h5>
+                  <img class="icon-selector" type="Cercano" src="resources/shapes/cercano.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Fusionado</h5>
+                  <img class="icon-selector" type="Fusionado" src="resources/shapes/fusionado2.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Distante</h5>
+                  <img class="icon-selector" type="Distante" src="resources/shapes/distante.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Hostil</h5>
+                  <img class="icon-selector" type="Hostil" src="resources/shapes/hostil.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Abuso Sexual</h5>
+                  <img class="icon-selector" type="Abuso_Sexual" src="resources/shapes/abuso_sexual.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Cercano - Hostil</h5>
+                  <img class="icon-selector" type="Cercano_Hostil" src="resources/shapes/cercano_hostil.png">
+                </div>
+                <div class="content_conectors">
+                  <h5>Fusionado - Hostil</h5>
+                  <img class="icon-selector" type="Fusionado_Hostil" src="resources/shapes/fusionado_hostil.png">
+                </div>
               </div>
               <h3>Opciones</h3>
               <div>
@@ -207,7 +227,7 @@
     </div>
     
     <!-- Popups de Configuración -->
-    <div id="settings_line" title="Line Settings">
+    <div id="settings_line" title="Configuración Linea">
       <div class="size_content">
         <label for="txt_size_line">Tamaño</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="number" max="4" min="1" value="1" id="txt_size_line" size="4">
       </div>
@@ -215,12 +235,15 @@
         <label for="txt_color_line">Color</label>&nbsp;&nbsp;
         <input class="color" id="txt_color_line" type="text">
       </div>
+      <div class="container_btn save">
+        <button type="button" id="btn_save_line">Aceptar</button>
+      </div>
       <div class="container_btn">
         <button type="button" id="btn_delete_line">Borrar</button>
       </div>
     </div>
     
-    <div id="settings_path" title="Path Settings">
+    <div id="settings_path" title="Configuración Conector">
       <div class="size_content">
         <label for="txt_size_path">Tamaño</label>&nbsp;&nbsp;<input style="max-width: 30px;" type="number" max="4" min="1" value="1" id="txt_size_path" size="4">
       </div>
@@ -228,35 +251,38 @@
         <label for="txt_color_path">Color</label>&nbsp;&nbsp;
         <input class="color" id="txt_color_path" type="text">
       </div>
+      <div class="container_btn save">
+        <button type="button" id="btn_save_path">Aceptar</button>
+      </div>
       <div class="container_btn">
         <button type="button" id="btn_delete_path">Borrar</button>
       </div>
     </div>
     
-    <div id="settings_item" title="Item Settings">
+    <div id="settings_item" title="Información">
       
       <div class="content_name">
-        <label for="txt_name">Nombre Item</label>
+        <label for="txt_name">Nombre</label>
         <input type="text" name="txt_name" id="txt_name" style="max-width: 120px;margin: 0;height: auto;"/>
       </div>
       
       <div class="content_age">
-        <label for="txt_age">Edad Item</label>
+        <label for="txt_age">Edad</label>
         <input type="number" min="0" max="110" name="txt_age" id="txt_age" style="max-width: 70px;margin: 0;height: auto;"/>
       </div>
       
       <div class="content_birth">
-        <label for="txt_date">Fech. Nacimiento</label>
-        <input type="date" name="txt_date" id="txt_date" style="max-width: 130px;margin: 0 0 .5rem;height: auto;"/>
+        <label for="txt_date">F. Nacimiento</label>
+        <input type="date" name="txt_date" id="txt_date" style="max-width: 148px;margin: 0 0 .5rem;height: auto;    font-size: 14px;"/>
       </div>
       
       <div class="design_content">
-        <label for="txt_color_text">Color del item</label>&nbsp;&nbsp;
+        <label for="txt_color_text">Color</label>&nbsp;&nbsp;
         <input class="color" type="text" id="txt_color_text" style="max-width: 120px;margin: 0 0 .5rem;height: auto;">
       </div>
       
       <div class="content_name">
-        <label for="txt_text" style="vertical-align: top;">Texto Item</label>
+        <label for="txt_text" style="vertical-align: top;">Texto</label>
         <textarea name="txt_text" id="txt_text" style="max-width: 185px;margin: 0;height: 4rem;padding-top: 0;S border-color: transparent transparent rgb(169,169,169) transparent;" class="materialize-textarea"></textarea>
       </div>
       
@@ -264,7 +290,9 @@
         <input type="checkbox" class="filled-in" name="die_item" id="die_item"  style="display:none"/>
         <label for="die_item">Muerte</label>
       </div>
-      
+      <div class="container_btn save">
+        <button type="button" id="btn_save_item">Aceptar</button>
+      </div>
       <div class="container_btn">
         <button type="button" id="btn_delete">Borrar</button>
       </div>

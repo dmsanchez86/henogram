@@ -82,10 +82,13 @@
             plumbInstance.addEndpoint( $selId , $currentOp);
         }
         
+        
         plumbInstance.draggable(plumbInstance.getSelector(options.savedObj.selector), {
             drag: function(e) {
-            }
+            },
+            containment:true
         });
+        
     };
 
     jsPlumbInstance.save = function(options, plumbInstance){

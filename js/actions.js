@@ -248,6 +248,9 @@ jsPlumb.ready(function(e){
 	        $( "#settings_path" ).dialog( "close" );
 	    });
 	    
+	    $('#btn_save_path').unbind('click').click(function(){
+	        $( "#settings_path" ).dialog( "close" );
+	    });
    });
 
 	instance.setContainer("canvas");
@@ -448,7 +451,7 @@ jsPlumb.ready(function(e){
 		drag: function(ui,e){
 		    var target = ui.target;
 		    var type = target.getAttribute('type');
-		    if(type == "pregnancy" || type == "ind_abortion"){
+		    if(type == "pregnancy" || type == "ind_abortion" || type == "esp_abortion"){
 		        target.style.boxShadow    = "0";
 		    }else{
 		        target.style.boxShadow    = "0 0 20px 0px rgba(0, 0, 0, 0.83)";
@@ -459,7 +462,7 @@ jsPlumb.ready(function(e){
 		    
 		    var type = target.getAttribute('type');
 		    
-		    if(type == "pregnancy" || type == "ind_abortion"){
+		    if(type == "pregnancy" || type == "ind_abortion" || type == "esp_abortion"){
 		        target.style.boxShadow    = "0";
 		    }else{
 		        target.style.boxShadow    = "0 0 13px 0px rgba(0, 0, 0, 0.33)";
@@ -557,6 +560,9 @@ jsPlumb.ready(function(e){
 	        obj.next().remove();
 	        obj.next().remove();
 	        obj.remove();
+	        $("#settings_item").dialog( "close" );
+	    });
+	    $("#btn_save_item").unbind('click').click(function(){
 	        $("#settings_item").dialog( "close" );
 	    });
 	}
@@ -752,6 +758,9 @@ function get_items(){
 	        $( "#settings_path" ).dialog( "close" );
 	    });
 	    
+	    $('#btn_save_path').unbind('click').click(function(){
+	        $( "#settings_path" ).dialog( "close" );
+	    });
    });
 
 	instance.setContainer($("#canvas"));
@@ -946,6 +955,9 @@ function event_line(){
 function delete_line(obj){
     $("#btn_delete_line").unbind('click').click(function(){
         obj.remove();
+        $("#settings_line").dialog( "close" );
+    });
+    $("#btn_save_line").unbind('click').click(function(){
         $("#settings_line").dialog( "close" );
     });
 }
