@@ -10,7 +10,8 @@
         var blocks = conn.blocks;
         var endpoints_ = conn.end_pointsRestantes;
         var connections = conn.connections;
-        
+        var lineas = conn.lineas;
+       
         // Donde se agrega uno por uno los items del archivo
         for (var i = 0; i < blocks.length; i++) {
             var o = blocks[i];
@@ -82,6 +83,20 @@
             plumbInstance.addEndpoint( $selId , $currentOp);
         }
         
+        for (var i = 0; i < lineas.length; i++) {
+            var _id = "#" + lineas[i].id;
+            $("#canvas").append( lineas[i].element );
+        }
+        
+        var lines = $('#canvas > div:not(.shape,.overlay,.jsplumb-endpoint)');
+        lines.draggable({ 
+            cursor: "move", 
+            cursorAt: { 
+                top: 30, 
+                left: 56
+            },
+            containment: "#canvas"
+        });
         
         plumbInstance.draggable(plumbInstance.getSelector(options.savedObj.selector), {
             drag: function(e) {
@@ -255,8 +270,25 @@
                 end_points.push(currentatt);                
             }
         });
+        
+        var lineas_exportar  = [];
+        var lineas = $(".line");
+        lineas.each(function(ix,ox){
+              var $elem = $(ox);
+              lineas_exportar.push({
+                element : lineas[ix].outerHTML,
+                id      : $elem.attr('id')
+              });
+        });
 
-        var obj = {selector:options.selector,connections: connections, blocks: blocks, end_pointsRestantes:end_points};
+        var obj = {
+                   selector            : options.selector,
+                   connections         : connections, 
+                   blocks              : blocks, 
+                   end_pointsRestantes : end_points,
+                   lineas              : lineas_exportar     
+        };
+        
         return obj;
     };
 })(jsPlumb);

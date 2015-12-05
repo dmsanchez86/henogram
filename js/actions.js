@@ -553,19 +553,23 @@ jsPlumb.ready(function(e){
 	}
 	
 	// Evento que borra un item con sus conectores
-	function delete_shape(obj){
-	    $("#btn_delete").unbind('click').click(function(){
-	        obj.next().remove();
-	        obj.next().remove();
-	        obj.next().remove();
-	        obj.next().remove();
-	        obj.remove();
-	        $("#settings_item").dialog( "close" );
-	    });
-	    $("#btn_save_item").unbind('click').click(function(){
-	        $("#settings_item").dialog( "close" );
-	    });
-	}
+// 	function delete_shape(obj){
+	    
+// 	    var id = obj.attr("id");
+// 	    console.warn(id);
+	    
+// 	    $("#btn_delete").unbind('click').click(function(){
+	       
+// 	       instance.detachAllConnections(id);
+//           instance.removeAllEndpoints(id);
+// 	       obj.remove();
+	       
+// 	       $("#settings_item").dialog( "close" );
+// 	    });
+// 	    $("#btn_save_item").unbind('click').click(function(){
+// 	        $("#settings_item").dialog( "close" );
+// 	    });
+// 	}
 	
 	// Evento que cambia el color del item
 	function change_background(obj){
@@ -704,8 +708,16 @@ function text_shape(obj){
 
 // Evento que borra un item con sus conectores
 function delete_shape(obj){
+   var id = obj.attr("id");
     $("#btn_delete").unbind('click').click(function(){
-        obj.remove();
+       
+       instance.detachAllConnections(id);
+       //instance.removeAllEndpoints(id);
+       obj.remove();
+       
+       $("#settings_item").dialog( "close" );
+    });
+    $("#btn_save_item").unbind('click').click(function(){
         $("#settings_item").dialog( "close" );
     });
 }
