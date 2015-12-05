@@ -712,7 +712,7 @@ function delete_shape(obj){
     $("#btn_delete").unbind('click').click(function(){
        
        instance.detachAllConnections(id);
-       //instance.removeAllEndpoints(id);
+       instance.removeAllEndpoints(id);
        obj.remove();
        
        $("#settings_item").dialog( "close" );

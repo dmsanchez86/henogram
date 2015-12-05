@@ -51,7 +51,7 @@
                 y2:paintInfo.startStubY
              });
 
-            for (var i = 0; i < peaks - 1; i++) {
+            for (var i = 0; i < peaks - 3; i++) {
                 // debugger;
                 var xy = PuntoEnLinea(origin, m, shift + ((i+1) * w)),
                     pxy = TrasladarPunto(xy, n, upper, amplitude);
@@ -71,16 +71,16 @@
                 x1:current[0], 
                 y1:current[1],
                 x2:paintInfo.endStubX,
-                y2:paintInfo.endStubY
+                y2:current[1]
              });
-
-    
+            
+            /*
              _super.addSegment(this, "Straight", { 
                 x1:paintInfo.endStubX, 
                 y1:paintInfo.endStubY,
                 x2:paintInfo.tx,
                 y2:paintInfo.ty
-             });
+             });*/
         };
     };
     jsPlumbUtil.extend(Abuso_Sexual, jsPlumb.Connectors.AbstractConnector);

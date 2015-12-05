@@ -7760,9 +7760,12 @@
             if (!_jsPlumb.Defaults.DoNotThrowErrors && jsPlumb.Connectors[renderMode][connectorName] == null)
                 throw { msg: "jsPlumb: unknown connector type '" + connectorName + "'" };
             
-            if( connectorName == "Bezier" ){
+            if( connectorName == "Flowchart" ){
                 var connectorName = _defaults.conector;
             }
+            console.warn( "----------------" );
+            console.warn( connectorName );
+            console.warn( "----------------" );
             
             return new _jp.Connectors[renderMode][connectorName](connectorArgs, forComponent);
         },

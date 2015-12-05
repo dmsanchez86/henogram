@@ -44,6 +44,8 @@
         }
         for (var i = 0; i < connections.length; i++) {
             var connection1 = plumbInstance.connect({
+                reattach: true,
+                maxConnections: 10,
                 source: connections[i].sourceId,
                 target: connections[i].targetId,
                 anchors: function(){
@@ -272,14 +274,16 @@
         });
         
         var lineas_exportar  = [];
-        var lineas = $(".line");
-        lineas.each(function(ix,ox){
-              var $elem = $(ox);
-              lineas_exportar.push({
-                element : lineas[ix].outerHTML,
-                id      : $elem.attr('id')
-              });
-        });
+        if( $(".line").length > 0 ){
+            var lineas = $(".line");
+            lineas.each(function(ix,ox){
+                  var $elem = $(ox);
+                  lineas_exportar.push({
+                    element : lineas[ix].outerHTML,
+                    id      : $elem.attr('id')
+                  });
+            });
+        }
 
         var obj = {
                    selector            : options.selector,
