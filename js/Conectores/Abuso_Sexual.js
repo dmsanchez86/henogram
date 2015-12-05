@@ -74,6 +74,7 @@
                 y2:current[1]
              });
             
+            console.log(this);
             /*
              _super.addSegment(this, "Straight", { 
                 x1:paintInfo.endStubX, 

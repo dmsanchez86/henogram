@@ -82,7 +82,8 @@
             var _id = "#" + endpoints_[i].IdEl;
             var $selId = $(_id);
             var $currentOp = endpoints_[i].currentEndpoint;
-            plumbInstance.addEndpoint( $selId , $currentOp);
+            var a = plumbInstance.addEndpoint( $selId , $currentOp);
+            a.addOverlay([ "Arrow", { width:10, height:10, id:"arrow" }]); 
         }
         
         for (var i = 0; i < lineas.length; i++) {
@@ -264,7 +265,10 @@
                         activeClass: "dragActive"
                     },
                     anchor: e.anchor.type,
-                    maxConnections: 10           
+                    maxConnections: 10,
+                    connectorOverlays:[ 
+                        [ "Arrow", { width:15, length:30, location:1, id:"arrow" } ],
+                    ]
                 }
                 
                 currentatt.IdEl = e.elementId;

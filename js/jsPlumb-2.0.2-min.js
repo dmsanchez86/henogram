@@ -4573,7 +4573,6 @@
             };
 
             if (!jsPlumb.connectorsInitialized) {
-                console.log("Inicio de contenedores");
                 for (var i = 0; i < connectorTypes.length; i++) {
                     for (var j = 0; j < rendererTypes.length; j++) {
                         _oneType(rendererTypes[j], connectorTypes[i][1], connectorTypes[i][0]);
@@ -6347,6 +6346,7 @@
             }
         },
         addOverlay: function (overlay, doNotRepaint) {
+            debugger;
             if( typeof( this.connector ) == "string"){
                 if( this.connector == "Enfocado_En" || this.connector == "Abuso_Sexual" ){
                     var o = _processOverlay(this, overlay);
@@ -7760,13 +7760,26 @@
             if (!_jsPlumb.Defaults.DoNotThrowErrors && jsPlumb.Connectors[renderMode][connectorName] == null)
                 throw { msg: "jsPlumb: unknown connector type '" + connectorName + "'" };
             
-            if( connectorName == "Flowchart" ){
+            if( connectorName == "Flowchart" || connectorName == "Bezier"){
                 var connectorName = _defaults.conector;
+            }if( connectorName == "Distante"){
+                var connectorName = "Focalizado";
+                for(var m = 0; m < forComponent.endpoints.length; m++){
+                   
+                    if( forComponent.endpoints[m].connectorStyle == undefined ){
+                        forComponent.endpoints[m].connectorStyle = {
+                            dashstyle: "2 2"
+                        };
+                    }else{
+                        forComponent.endpoints[m].connectorStyle.dashstyle = "2 2";
+                    }
+                    //forComponent.endpoints[m].connectorStyle.dashstyle = "2 2";
+                }
+                //console.log(forComponent.endpoints);
             }
-            console.warn( "----------------" );
-            console.warn( connectorName );
-            console.warn( "----------------" );
+
             
+
             return new _jp.Connectors[renderMode][connectorName](connectorArgs, forComponent);
         },
         _makeAnchor = function (anchorParams, elementId, _jsPlumb) {
